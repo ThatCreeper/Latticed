@@ -1,0 +1,4 @@
+-cp src
+-lib heaps
+-js bin/game.js
+-main game.Main

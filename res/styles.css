@@ -1,0 +1,11 @@
+camera-coords {
+    x: 5px;
+    y: 5px;
+    background: white;
+    layout: vertical;
+}
+
+text {
+    color: red;
+    margin: 5;
+}

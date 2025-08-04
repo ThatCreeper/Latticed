@@ -39,4 +39,16 @@ class M {
 
         return lerp(A, B, x);
     }
+
+    public static function hypotSqr(x: Float, y: Float) {
+        return x * x + y * y;
+    }
+
+    public static function hypot(x, y) {
+        return Math.sqrt(hypotSqr(x, y));
+    }
+
+    public static function distSqr(x1: Float, y1: Float, x2: Float, y2: Float) {
+        return hypotSqr(x1 - x2, y1 - y2);
+    }
 }

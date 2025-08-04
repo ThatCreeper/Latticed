@@ -7,6 +7,7 @@ class CameraCoords extends h2d.Flow implements h2d.domkit.Object {
         <camera-coords>
             <text public id="cx" text={'$camX'}/>
             <text public id="cy" text={'$camY'}/>
+            <text public id="t" text={'15'}/>
         </camera-coords>;
 
     public function new(camX: Float, camY: Float, ?parent) {

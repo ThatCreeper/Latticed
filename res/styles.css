@@ -1,11 +1,12 @@
 camera-coords {
     x: 5px;
     y: 5px;
-    background: white;
+    background: gray;
     layout: vertical;
 }
 
 text {
-    color: red;
+    color: white;
     margin: 5;
+    text-shadow: 0 1 black;
 }

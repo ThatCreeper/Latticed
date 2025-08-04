@@ -5,6 +5,7 @@ import h2d.col.Point;
 class Game extends TimeAware {
     public var entities: List<Entity<Dynamic>>;
     public var hudLayer: h2d.Object;
+    public var worldlyHudLayer: h2d.Object;
     public var bgLayer: h2d.Object;
     public var gameLayer: h2d.Object;
     public var s2d: h2d.Scene;
@@ -30,9 +31,11 @@ class Game extends TimeAware {
         hudLayer = new h2d.Object();
         bgLayer = new h2d.Object();
         gameLayer = new h2d.Object();
+        worldlyHudLayer = new h2d.Object();
         s2d.add(bgLayer, 0);
         s2d.add(gameLayer, 1);
-        s2d.add(hudLayer, 2);
+        s2d.add(worldlyHudLayer, 2);
+        s2d.add(hudLayer, 3);
     }
     
     public function preUpdate() {

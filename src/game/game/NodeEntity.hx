@@ -23,7 +23,7 @@ class NodeEntity extends Entity<MainGame> {
         super.update();
         if (frozen)
             return;
-        timeRemaining -= deltaTime * Math.pow(0.9, connections.length);
+        timeRemaining -= deltaTime * Math.pow(0.8, connections.length);
         if (timeRemaining <= 0) {
             remove();
             for (attacher in connections) {

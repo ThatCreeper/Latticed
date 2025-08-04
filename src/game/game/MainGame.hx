@@ -39,6 +39,7 @@ class MainGame extends Game {
         super.postUpdate();
         camCoords.cx.text = Std.string(Math.floor(camera.x));
         camCoords.cy.text = Std.string(Math.floor(camera.y));
+        camCoords.e.text = Std.string(entities.length);
         camCoords.t.text = Std.string(selected.timeRemaining);
     }
 }

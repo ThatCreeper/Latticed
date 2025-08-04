@@ -1,8 +1,13 @@
 camera-coords {
     x: 5px;
     y: 5px;
-    background: gray;
     layout: vertical;
+}
+
+.infobox {
+    layout: vertical;
+    background: gray;
+    margin-bottom: 5;
 }
 
 text {

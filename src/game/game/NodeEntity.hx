@@ -23,16 +23,16 @@ class NodeEntity extends Entity<MainGame> {
         super.update();
         if (frozen)
             return;
-        var q = connections.length;
-        timeRemaining -= deltaTime * ( Math.pow(Math.pow(1.05, 2 * q) - 1,
-                                                2)
-                                     - Math.pow(1.1, q)
-                                     + 2);
-        if (timeRemaining <= 0) {
-            remove();
-            return;
-        }
-        spr.alpha = timeRemaining / maxTimeRemaining;
+        // var q = connections.length;
+        // timeRemaining -= deltaTime * ( Math.pow(Math.pow(1.05, 2 * q) - 1,
+        //                                         2)
+        //                              - Math.pow(1.1, q)
+        //                              + 2);
+        // if (timeRemaining <= 0) {
+        //     remove();
+        //     return;
+        // }
+        // spr.alpha = timeRemaining / maxTimeRemaining;
     }
 
     override function onDispose() {

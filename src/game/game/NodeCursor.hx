@@ -63,6 +63,9 @@ class NodeCursor extends Entity<MainGame> {
 
     function placeNewNode() {
         trace("Place!");
+
+        if (game.cashCheckToast(5, x, y, "You need 5 nutrients\nto make a node!")) return;
+
         game.selected.frozen = false;
         var ent = new NodeEntity();
         ent.x = x;
@@ -84,15 +87,15 @@ class NodeCursor extends Entity<MainGame> {
             ent.connections.add(attacher);
         }
 
-        if (ent.connections.length > 5) {
-            ent.remove();
+        // if (ent.connections.length > 5) {
+        //     ent.remove();
             
-            new Toast(ent.x, ent.y, "Too many connections!");
+        //     new Toast(ent.x, ent.y, "Too many connections!");
 
-            return;
-        }
+        //     return;
+        // }
 
-        game.addScore(ent.x, ent.y, 10 * ent.connections.length);
+        game.addScore(ent.x, ent.y, M.imin(10 * ent.connections.length, 50));
         hxd.Res.winnav.play();
     }
 }

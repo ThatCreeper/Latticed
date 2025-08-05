@@ -9,6 +9,8 @@ class MainGame extends Game {
     public var selected: NodeEntity;
     public var cursor: NodeCursor;
     var camCoords: CameraCoords;
+    public var score = 0;
+    public var money = 100;
 
     public function new() {
         super();
@@ -46,13 +48,37 @@ class MainGame extends Game {
 
     override function postUpdate() {
         super.postUpdate();
+        updateGUI();
+    }
+
+    function updateGUI():Void {
         camCoords.cx.text = Std.string(Math.floor(camera.x));
         camCoords.cy.text = Std.string(Math.floor(camera.y));
         camCoords.e.text = Std.string(entities.length);
         camCoords.t.text = Std.string(selected.timeRemaining);
+        camCoords.p.text = Std.string(score);
+        camCoords.m.text = Std.string(money);
     }
 
     public function addScore(x:Float, y:Float, score:Int) {
+        this.score += score;
         new Toast(x, y, '+${score}', this, this.worldlyHudLayer);
+    }
+
+    // USAGE: if (cashCheck(5)) return;
+    public function cashCheck(required) {
+        if (money < required) return true;
+        money -= required;
+        return false;
+    }
+
+    // USAGE: if (cashCheckToast(5, x, y, "Not enough money!")) return;
+    public function cashCheckToast(required, x, y, text) {
+        if (money < required) {
+            new Toast(x, y, text, this);
+            return true;
+        }
+        money -= required;
+        return false;
     }
 }

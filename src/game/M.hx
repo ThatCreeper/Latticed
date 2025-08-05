@@ -51,4 +51,9 @@ class M {
     public static function distSqr(x1: Float, y1: Float, x2: Float, y2: Float) {
         return hypotSqr(x1 - x2, y1 - y2);
     }
+
+    public static function imin(i:Int, i2:Int) {
+        if (i2 < i) return i2;
+        return i;
+    }
 }

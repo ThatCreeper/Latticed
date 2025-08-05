@@ -13,6 +13,10 @@ class CameraCoords extends h2d.Flow implements h2d.domkit.Object {
                 <text public id="e" text={'0'}/>
                 <text public id="t" text={'15'}/>
             </flow>
+            <flow class="infobox">
+                <text public id="p" text={'0'}/>
+                <text public id="m" text={'100'}/>
+            </flow>
         </camera-coords>;
 
     public function new(camX: Float, camY: Float, ?parent) {

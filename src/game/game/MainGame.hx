@@ -17,6 +17,8 @@ class MainGame extends Game {
         camera.scale = 2;
         camera.shakeIntensity = 1;
 
+        new Background(this, bgLayer);
+
         selected = new NodeEntity(this);
         selected.frozen = true;
 

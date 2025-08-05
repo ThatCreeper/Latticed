@@ -39,7 +39,7 @@ class NodeCursor extends Entity<MainGame> {
             var hypot = M.hypotSqr(dx1, dy1);
             if (hypot <= 75 * 75)
                 numCloseNodes++;
-            if (hypot * 2 < M.hypotSqr(dx, dy)) {
+            if (game.selected.disposed || hypot * 2 < M.hypotSqr(dx, dy)) {
                 game.selected = node;
                 dx = dx1;
                 dy = dy1;

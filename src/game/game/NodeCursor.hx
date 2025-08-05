@@ -80,6 +80,8 @@ class NodeCursor extends Entity<MainGame> {
     }
 
     function harvestAnt(ant:Ant) {
+        // TODO: Check to make sure that it's actually within range=75.
+        // TODO: Make the range not a magic number plastered everywhere.
         game.addScore(x, y - 5, 50);
         game.addMoney(x, y + 5, 25);
         ant.harvester = placeNewNodeImpl();

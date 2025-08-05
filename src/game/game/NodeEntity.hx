@@ -23,14 +23,19 @@ class NodeEntity extends Entity<MainGame> {
         super.update();
         if (frozen)
             return;
-        timeRemaining -= deltaTime * Math.pow(0.8, connections.length);
+        timeRemaining -= deltaTime * Math.pow(1.3, connections.length);
         if (timeRemaining <= 0) {
             remove();
-            for (attacher in connections) {
-                attacher.remove();
-            }
             return;
         }
         spr.alpha = timeRemaining / maxTimeRemaining;
+    }
+
+    override function onDispose() {
+        super.onDispose();
+        
+        for (attacher in connections) {
+            attacher.remove();
+        }
     }
 }

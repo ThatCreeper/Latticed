@@ -38,6 +38,8 @@ class Main extends hxd.App {
         hxd.res.Resource.LIVE_UPDATE = true;
         #end
 
+        hxd.snd.Manager.get();
+
         Pad.wait(p -> {
             pad = p;
             pad.onDisconnect = () -> pad = null;

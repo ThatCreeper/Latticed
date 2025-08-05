@@ -4,13 +4,17 @@ import hxd.Key;
 import h2d.Graphics;
 
 class NodeCursor extends Entity<MainGame> {
-    public function new(?g, ?layer) {
+    var attacher: CursorAttacher;
+
+    public function new(g, ?layer) {
         super(g, layer);
         var graphic = new Graphics();
         graphic.beginFill(0x0000FF);
         graphic.drawRoundedRect(-3, -3, 6, 6, 1);
         graphic.endFill();
         spr.addChild(graphic);
+        
+        attacher = new CursorAttacher(g, g.worldlyHudLayer);
     }
 
     override function update() {
@@ -22,6 +26,8 @@ class NodeCursor extends Entity<MainGame> {
         var dx = x - game.selected.x;
         var dy = y - game.selected.y;
 
+        var numCloseNodes = 1;
+
         for (node in game.entities) {
             if (!(node is NodeEntity))
                 continue;
@@ -30,12 +36,17 @@ class NodeCursor extends Entity<MainGame> {
             var node: NodeEntity = cast(node);
             var dx1 = x - node.x;
             var dy1 = y - node.y;
-            if (M.hypotSqr(dx1, dy1) * 2 < M.hypotSqr(dx, dy)) {
+            var hypot = M.hypotSqr(dx1, dy1);
+            if (hypot <= 75 * 75)
+                numCloseNodes++;
+            if (hypot * 2 < M.hypotSqr(dx, dy)) {
                 game.selected = node;
                 dx = dx1;
                 dy = dy1;
             }
         }
+
+        attacher.spr.visible = numCloseNodes <= 5;
 
         if (dx * dx + dy * dy > 75 * 75) {
             var dist = Math.sqrt(dx * dx + dy * dy);
@@ -46,27 +57,42 @@ class NodeCursor extends Entity<MainGame> {
         }
 
         if (Key.isReleased(Key.MOUSE_LEFT)) {
-            trace("Place!");
-            game.selected.frozen = false;
-            var ent = new NodeEntity();
-            ent.x = x;
-            ent.y = y;
-            camera.sx = ent.x;
-            camera.sy = ent.y;
-            game.selected = ent;
-
-            for (node in game.entities) {
-                if (!(node is NodeEntity))
-                    continue;
-                var node: NodeEntity = cast(node);
-                if (node == ent)
-                    continue;
-                if (M.distSqr(node.x, node.y, ent.x, ent.y) > 76 * 76) // floating point bug prevention
-                    continue;
-                var attacher = new NodeAttacher(node, ent);
-                node.connections.add(attacher);
-                ent.connections.add(attacher);
-            }
+            placeNewNode();
         }
+    }
+
+    function placeNewNode() {
+        trace("Place!");
+        game.selected.frozen = false;
+        var ent = new NodeEntity();
+        ent.x = x;
+        ent.y = y;
+        camera.sx = ent.x;
+        camera.sy = ent.y;
+        game.selected = ent;
+
+        for (node in game.entities) {
+            if (!(node is NodeEntity))
+                continue;
+            var node:NodeEntity = cast(node);
+            if (node == ent)
+                continue;
+            if (M.distSqr(node.x, node.y, ent.x, ent.y) > 76 * 76) // floating point bug prevention
+                continue;
+            var attacher = new NodeAttacher(node, ent);
+            node.connections.add(attacher);
+            ent.connections.add(attacher);
+        }
+
+        if (ent.connections.length > 5) {
+            ent.remove();
+            
+            new Toast(ent.x, ent.y, "Too many connections!");
+
+            return;
+        }
+
+        game.addScore(ent.x, ent.y, 10 * ent.connections.length);
+        hxd.Res.winnav.play();
     }
 }

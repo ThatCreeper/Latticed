@@ -1,5 +1,6 @@
 package game.game;
 
+import game.Entity;
 import hxd.Key;
 import h2d.col.Point;
 import game.game.ui.CameraCoords;
@@ -11,12 +12,12 @@ class MainGame extends Game {
 
     public function new() {
         super();
-        camera.scale = 3;
+        camera.scale = 2;
+        camera.shakeIntensity = 1;
 
         selected = new NodeEntity(this);
         selected.frozen = true;
 
-        new CursorAttacher(this, worldlyHudLayer);
         cursor = new NodeCursor(this, worldlyHudLayer);
 
         camCoords = new CameraCoords(0, 0, hudLayer);
@@ -33,6 +34,14 @@ class MainGame extends Game {
             camera.sy -= 3 * tmod;
         if (Key.isDown(Key.DOWN))
             camera.sy += 3 * tmod;
+
+        if (Key.isPressed(Key.QWERTY_EQUALS))
+            camera.sscale *= 2;
+        if (Key.isPressed(Key.QWERTY_MINUS))
+            camera.sscale /= 2;
+
+        if (camera.sscale < 1)
+            camera.sscale = 1;
     }
 
     override function postUpdate() {
@@ -41,5 +50,9 @@ class MainGame extends Game {
         camCoords.cy.text = Std.string(Math.floor(camera.y));
         camCoords.e.text = Std.string(entities.length);
         camCoords.t.text = Std.string(selected.timeRemaining);
+    }
+
+    public function addScore(x:Float, y:Float, score:Int) {
+        new Toast(x, y, '+${score}', this, this.worldlyHudLayer);
     }
 }

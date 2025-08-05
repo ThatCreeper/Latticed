@@ -2,6 +2,7 @@
 -lib heaps
 -lib hlsdl
 -lib domkit
+-lib hlopenal
 -D domkit_heaps
 -hl fb.hl
 -main game.Main

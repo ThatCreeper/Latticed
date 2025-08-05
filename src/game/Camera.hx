@@ -30,6 +30,8 @@ class Camera extends TimeAware {
     var ry: Float = 0;
     var rscale = 1.0;
 
+    public var shakeIntensity = 2.0;
+
     public function new() {
         
     }
@@ -53,8 +55,8 @@ class Camera extends TimeAware {
         c.y = ry;
 
         if (shaking) {
-            c.x += (Math.random() - 0.5) * 2 * 2 / scale;
-            c.y += (Math.random() - 0.5) * 2 * 2 / scale;
+            c.x += (Math.random() - 0.5) * 2 * shakeIntensity / scale;
+            c.y += (Math.random() - 0.5) * 2 * shakeIntensity / scale;
         }
     }
 

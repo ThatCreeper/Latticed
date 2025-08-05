@@ -29,6 +29,11 @@ class M {
                y1 <= y4 && y2 >= y3;
     }
 
+    public static function pointRectOverlap(x, y, x1:Float, y1:Float, x2:Float, y2:Float) {
+        return x >= x1 && x < x2 &&
+               y >= y1 && y < y2;
+    }
+
     public static function cubicBezier(p1, p2, p3, p4, x) {
         var a = lerp(p1, p2, x);
         var b = lerp(p2, p3, x);

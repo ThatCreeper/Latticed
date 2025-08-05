@@ -20,8 +20,8 @@ class NodeCursor extends Entity<MainGame> {
     override function update() {
         super.update();
 
-        x = game.s2d.mouseX + 0;
-        y = Math.max(0, game.s2d.mouseY);
+        x = game.s2d.mouseX;
+        y = game.s2d.mouseY;
 
         var dx = x - game.selected.x;
         var dy = y - game.selected.y;
@@ -48,17 +48,41 @@ class NodeCursor extends Entity<MainGame> {
 
         // attacher.spr.visible = numCloseNodes <= 5;
 
-        if (dx * dx + dy * dy > 75 * 75) {
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            dx = dx / dist * 75;
-            dy = dy / dist * 75;
-            x = dx + game.selected.x;
-            y = dy + game.selected.y;
+        var overlappingAnt:Ant = null;
+        for (ant in game.entities) {
+            if (!(ant is Ant))
+                continue;
+            var ant:Ant = cast ant;
+            if (!ant.harvested && ant.overlapsXY(x, y)) {
+                overlappingAnt = ant;
+                break;
+            }
+        }
+
+        if (overlappingAnt == null) {
+            if (dx * dx + dy * dy > 75 * 75) {
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                dx = dx / dist * 75;
+                dy = dy / dist * 75;
+                x = dx + game.selected.x;
+                y = dy + game.selected.y;
+            }
+            y = Math.max(0, y);
         }
 
         if (Key.isReleased(Key.MOUSE_LEFT)) {
-            placeNewNode();
+            if (overlappingAnt != null) {
+                harvestAnt(overlappingAnt);
+            } else {
+                placeNewNode();
+            }
         }
+    }
+
+    function harvestAnt(ant:Ant) {
+        ant.harvested = true;
+        game.selected.connections.add(new AntAttacher(game.selected, ant));
+        game.addScore(x, y, 50);
     }
 
     function placeNewNode() {

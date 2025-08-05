@@ -6,7 +6,7 @@ class NodeEntity extends Entity<MainGame> {
     public var maxTimeRemaining = 60.0;
     public var timeRemaining = 0.0;
     public var frozen = false;
-    public var connections = new List<NodeAttacher>();
+    public var connections = new List<BaseAttacher>();
     
     public function new(?g, ?layer) {
         super(g, layer);

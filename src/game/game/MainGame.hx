@@ -19,6 +19,8 @@ class MainGame extends Game {
 
         new Background(this, bgLayer);
 
+        new Ant(100, 0, this);
+
         selected = new NodeEntity(this);
         selected.frozen = true;
 

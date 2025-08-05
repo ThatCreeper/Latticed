@@ -65,23 +65,22 @@ class MainGame extends Game {
 
     public function addScore(x:Float, y:Float, score:Int) {
         this.score += score;
-        new Toast(x, y, '+${score}', this, this.worldlyHudLayer);
-    }
-
-    // USAGE: if (cashCheck(5)) return;
-    public function cashCheck(required) {
-        if (money < required) return true;
-        money -= required;
-        return false;
+        new Toast(x, y, -10, '+${score}', 0x00FF00, this, this.worldlyHudLayer);
     }
 
     // USAGE: if (cashCheckToast(5, x, y, "Not enough money!")) return;
     public function cashCheckToast(required, x, y, text) {
         if (money < required) {
-            new Toast(x, y, text, this);
+            new Toast(x, y, 3, text, 0xFF0000, this);
             return true;
         }
         money -= required;
+        new Toast(x, y, 3, '-$$$required', 0xFF0000, this);
         return false;
+    }
+
+    public function addMoney(x:Float, y:Float, money:Int) {
+        this.money += money;
+        new Toast(x, y, 3, '+${money}', 0x00FF00, this, this.worldlyHudLayer);
     }
 }

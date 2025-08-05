@@ -19,4 +19,10 @@ class NodeAttacher extends BaseAttacher {
         
         lookAt(from, to);
     }
+
+    override function onDispose() {
+        super.onDispose();
+        from.connections.remove(this);
+        to.connections.remove(this);
+    }
 }

@@ -46,7 +46,7 @@ class NodeCursor extends Entity<MainGame> {
             }
         }
 
-        attacher.spr.visible = numCloseNodes <= 5;
+        // attacher.spr.visible = numCloseNodes <= 5;
 
         if (dx * dx + dy * dy > 75 * 75) {
             var dist = Math.sqrt(dx * dx + dy * dy);

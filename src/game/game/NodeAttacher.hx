@@ -29,4 +29,8 @@ class NodeAttacher extends BaseAttacher {
     public function updateLookAt() {
         lookAt(from, to);
     }
+
+    public function lengthSqr() {
+        return M.distSqr(from.x, from.y, to.x, to.y);
+    }
 }

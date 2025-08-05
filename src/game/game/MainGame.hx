@@ -14,6 +14,7 @@ class MainGame extends Game {
 
     public function new() {
         super();
+        // TODO: This is just debug
         money = 100000;
         camera.scale = 2;
         camera.shakeIntensity = 1;
@@ -66,7 +67,7 @@ class MainGame extends Game {
 
     public function addScore(x:Float, y:Float, score:Int) {
         this.score += score;
-        new Toast(x, y, -10, '+${score}', 0x00FF00, this, this.worldlyHudLayer);
+        new Toast(x, y - 5, -10, '+${score}', 0x00FF00, this, this.worldlyHudLayer);
     }
 
     // USAGE: if (cashCheckToast(5, x, y, "Not enough money!")) return;
@@ -82,6 +83,6 @@ class MainGame extends Game {
 
     public function addMoney(x:Float, y:Float, money:Int) {
         this.money += money;
-        new Toast(x, y, 3, '+${money}', 0x00FF00, this, this.worldlyHudLayer);
+        new Toast(x, y + 5, 3, '+${money}', 0x00FF00, this, this.worldlyHudLayer);
     }
 }

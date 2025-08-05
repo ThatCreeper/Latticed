@@ -36,12 +36,6 @@ class NodeEntity extends Entity<MainGame> {
         // }
         // spr.alpha = timeRemaining / maxTimeRemaining;
     }
-    
-    public function updateConnections() {
-        for (connection in connections) {
-            connection.updateLookAt();
-        }
-    }
 
     override function onDispose() {
         super.onDispose();

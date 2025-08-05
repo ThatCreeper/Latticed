@@ -60,22 +60,5 @@ class Camera extends TimeAware {
         }
     }
 
-    public function screenToWorldX(screen) {
-        var scrWid = Main.INST.game.s2d.width;
-        var centerRelScreen = screen - scrWid / 2.0;
-        var centerRelZoomed = centerRelScreen / rscale;
-        var centerMoved = centerRelZoomed + rx;
-        var world = centerMoved + (scrWid / 2.0) / rscale;
-        return world;
-    }
-
-    // TODO: Function assumes centered = true. Also it probably doesn't work.
-    public function screenToWorldY(screen) {
-        var scrHei = Main.INST.game.s2d.height;
-        var centerRelScreen = screen - scrHei / 2.0;
-        var centerRelZoomed = centerRelScreen / rscale;
-        var centerMoved = centerRelZoomed + ry;
-        var world = centerMoved + (scrHei / 2.0) / rscale;
-        return world;
-    }
+    // TODO: Camera -> World, vice versa.
 }

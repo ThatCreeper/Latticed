@@ -96,6 +96,6 @@ class NodeCursor extends Entity<MainGame> {
         // }
 
         game.addScore(ent.x, ent.y, M.imin(10 * ent.connections.length, 50));
-        hxd.Res.winnav.play();
+        // hxd.Res.winnav.play();
     }
 }

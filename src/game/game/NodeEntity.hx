@@ -3,7 +3,7 @@ package game.game;
 import h2d.Graphics;
 
 class NodeEntity extends Entity<MainGame> {
-    public var maxTimeRemaining = 15.0;
+    public var maxTimeRemaining = 60.0;
     public var timeRemaining = 0.0;
     public var frozen = false;
     public var connections = new List<NodeAttacher>();
@@ -23,7 +23,7 @@ class NodeEntity extends Entity<MainGame> {
         super.update();
         if (frozen)
             return;
-        timeRemaining -= deltaTime * Math.pow(1.4, connections.length);
+        timeRemaining -= deltaTime * Math.pow(1.3, connections.length);
         if (timeRemaining <= 0) {
             remove();
             return;

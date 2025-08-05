@@ -4,7 +4,7 @@ import h2d.Tile;
 import h2d.Bitmap;
 
 class Ant extends MGEntity {
-    public var harvester:NodeEntity = null;
+    public var harvester:Null<NodeEntity> = null;
     public var lastX: Float;
     public var lastY: Float;
 

@@ -25,4 +25,8 @@ class NodeAttacher extends BaseAttacher {
         from.connections.remove(this);
         to.connections.remove(this);
     }
+
+    public function updateLookAt() {
+        lookAt(from, to);
+    }
 }

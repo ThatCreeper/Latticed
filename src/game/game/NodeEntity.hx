@@ -6,7 +6,7 @@ class NodeEntity extends Entity<MainGame> {
     public var maxTimeRemaining = 60.0;
     public var timeRemaining = 0.0;
     public var frozen = false;
-    public var connections = new List<BaseAttacher>();
+    public var connections = new List<NodeAttacher>();
     
     public function new(?g, ?layer) {
         super(g, layer);
@@ -35,6 +35,12 @@ class NodeEntity extends Entity<MainGame> {
         //     return;
         // }
         // spr.alpha = timeRemaining / maxTimeRemaining;
+    }
+    
+    public function updateConnections() {
+        for (connection in connections) {
+            connection.updateLookAt();
+        }
     }
 
     override function onDispose() {

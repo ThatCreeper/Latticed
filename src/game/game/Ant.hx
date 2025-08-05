@@ -4,13 +4,15 @@ import h2d.Tile;
 import h2d.Bitmap;
 
 class Ant extends MGEntity {
-    public var harvested = false;
+    public var harvester:NodeEntity = null;
+    public var lastX: Float;
+    public var lastY: Float;
 
     public function new(x, y, ?g, ?l) {
         super(g, l);
 
-        this.x = x;
-        this.y = y;
+        this.x = lastX = x;
+        this.y = lastY = y;
 
         var bmp = new Bitmap(Tile.fromColor(0xFFFF00), spr);
         bmp.scaleX = 32;
@@ -22,7 +24,18 @@ class Ant extends MGEntity {
     override function update() {
         super.update();
 
-        spr.alpha = harvested ? 0.5 : 1.0;
+        spr.alpha = harvester == null ? 1.0 : 0.5;
+
+        x += 5 * deltaTime;
+
+        if (harvester != null) {
+            harvester.x += x - lastX;
+            harvester.y += y - lastY;
+            harvester.updateConnections();
+        }
+
+        lastX = x;
+        lastY = y;
     }
 
     public function overlapsXY(x, y) {

@@ -53,7 +53,7 @@ class NodeCursor extends Entity<MainGame> {
             if (!(ant is Ant))
                 continue;
             var ant:Ant = cast ant;
-            if (!ant.harvested && ant.overlapsXY(x, y)) {
+            if (ant.harvester == null && ant.overlapsXY(x, y)) {
                 overlappingAnt = ant;
                 break;
             }
@@ -80,10 +80,9 @@ class NodeCursor extends Entity<MainGame> {
     }
 
     function harvestAnt(ant:Ant) {
-        ant.harvested = true;
-        game.selected.connections.add(new AntAttacher(game.selected, ant));
         game.addScore(x, y - 5, 50);
         game.addMoney(x, y + 5, 25);
+        ant.harvester = placeNewNodeImpl();
     }
 
     function placeNewNode(connections) {
@@ -97,6 +96,13 @@ class NodeCursor extends Entity<MainGame> {
 
         if (game.cashCheckToast(5, x, y + 5, "You need 5 nutrients\nto make a node!")) return;
 
+        var ent = placeNewNodeImpl();
+
+        game.addScore(x, y - 5, M.imin(10 * ent.connections.length, 50));
+        // hxd.Res.winnav.play();
+    }
+    
+    function placeNewNodeImpl():NodeEntity {
         var ent = new NodeEntity();
         ent.x = x;
         ent.y = y;
@@ -116,8 +122,6 @@ class NodeCursor extends Entity<MainGame> {
             node.connections.add(attacher);
             ent.connections.add(attacher);
         }
-
-        game.addScore(ent.x, ent.y - 5, M.imin(10 * ent.connections.length, 50));
-        // hxd.Res.winnav.play();
+        return ent;
     }
 }

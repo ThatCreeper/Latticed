@@ -23,6 +23,8 @@ class NodeEntity extends Entity<MainGame> {
         super.update();
         if (frozen)
             return;
+        // if (game.selected == this)
+        //     return;
         // var q = connections.length;
         // timeRemaining -= deltaTime * ( Math.pow(Math.pow(1.05, 2 * q) - 1,
         //                                         2)

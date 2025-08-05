@@ -90,7 +90,6 @@ class NodeCursor extends Entity<MainGame> {
 
         if (game.cashCheckToast(5, x, y, "You need 5 nutrients\nto make a node!")) return;
 
-        game.selected.frozen = false;
         var ent = new NodeEntity();
         ent.x = x;
         ent.y = y;

@@ -22,7 +22,6 @@ class MainGame extends Game {
         new Ant(100, 0, this);
 
         selected = new NodeEntity(this);
-        selected.frozen = true;
 
         cursor = new NodeCursor(this, worldlyHudLayer);
 

@@ -7,16 +7,19 @@ class Ant extends MGEntity {
     public var harvester:Null<NodeEntity> = null;
     public var lastX: Float;
     public var lastY: Float;
+    public var startX: Float;
+    public var startY: Float;
     public var harvesterTargetTime = 5.0;
     public var harvesterAmount = 15;
     public var harvesterScore = 10;
+    public var maxDistance = 500;
     var harvesterTime = 0.0;
 
     public function new(x, y, ?g, ?l) {
         super(g, l);
 
-        this.x = lastX = x;
-        this.y = lastY = y;
+        this.x = lastX = startX = x;
+        this.y = lastY = startY = y;
 
         var bmp = new Bitmap(Tile.fromColor(0xFFFF00), spr);
         bmp.scaleX = 32;
@@ -31,6 +34,7 @@ class Ant extends MGEntity {
         spr.alpha = harvester == null ? 1.0 : 0.5;
 
         x += 5 * deltaTime;
+        // TODO: Use max distance
 
         if (harvester != null) {
             updateHarvesters();
@@ -41,6 +45,7 @@ class Ant extends MGEntity {
     }
 
     function updateHarvesters():Void {
+        // TODO: If Y mod is never added, simplify to += 5 * delta or whatever
         harvester.x += x - lastX;
         harvester.y += y - lastY;
 

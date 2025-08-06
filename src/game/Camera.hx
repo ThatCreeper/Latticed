@@ -37,9 +37,9 @@ class Camera extends TimeAware {
     }
 
     public function update(s: h2d.Scene, shaking: Bool) {
-        rx = M.lerp(rx, sx, 0.2 * tmod);
-        ry = M.lerp(ry, sy, 0.2 * tmod);
-        rscale = M.lerp(rscale, sscale, 0.2 * tmod);
+        rx = M.lerpC(rx, sx, 0.2 * tmod);
+        ry = M.lerpC(ry, sy, 0.2 * tmod);
+        rscale = M.lerpC(rscale, sscale, 0.2 * tmod);
         
         var c = s.camera;
         if (centered) {

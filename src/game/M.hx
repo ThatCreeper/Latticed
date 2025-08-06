@@ -5,6 +5,10 @@ class M {
         return from + (to - from) * x;
     }
 
+    public static function lerpC(from, to, x) {
+        return lerp(from, to, M.clamp(x, 0, 1));
+    }
+
     public static function lerpR(from: Float, to: Float, x: Float) {
         var l = lerp(from, to, x);
         if (Math.abs(l - to) < 1)

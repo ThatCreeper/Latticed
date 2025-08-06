@@ -19,7 +19,6 @@ class MainGame extends Game {
     public function new() {
         super();
         // TODO: This is just debug
-        money = 100000;
         camera.scale = 2;
         camera.shakeIntensity = 1;
 

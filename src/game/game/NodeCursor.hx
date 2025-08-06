@@ -55,6 +55,7 @@ class NodeCursor extends Entity<MainGame> {
             }
         }
 
+        // TODO: this is wrong but not fully wrong
         if (overlappingAnt == null) {
             if (dx * dx + dy * dy > 75 * 75) {
                 var dist = Math.sqrt(dx * dx + dy * dy);
@@ -104,6 +105,7 @@ class NodeCursor extends Entity<MainGame> {
         var ent = placeNewNodeImpl();
 
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
+        game.playSpace.register(x, y);
         // hxd.Res.winnav.play();
     }
 

@@ -12,6 +12,7 @@ class MainGame extends Game {
     var camCoords: CameraCoords;
     public var score = 0;
     public var money = 100;
+    public var playSpace: PlaySpace;
 
     var lastMouseX = 0.0;
     var lastMouseY = 0.0;
@@ -23,6 +24,8 @@ class MainGame extends Game {
         camera.shakeIntensity = 1;
 
         new Background(this, bgLayer);
+        
+        playSpace = new PlaySpace(this);
 
         new Ant(100, 0, this);
 

@@ -5,6 +5,7 @@ import hxd.Key;
 import h2d.col.Point;
 import game.game.ui.CameraCoords;
 
+// TODO: Free play mode
 class MainGame extends Game {
     public var selected: NodeEntity;
     public var cursor: NodeCursor;

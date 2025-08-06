@@ -3,7 +3,7 @@ package game.game;
 import h2d.Tile;
 import h2d.Bitmap;
 
-class Ant extends Creature {
+class SpiderStrider extends Creature {
     public var harvesterTargetTime = 5.0;
     public var harvesterAmount = 15;
     public var harvesterScore = 10;
@@ -13,7 +13,7 @@ class Ant extends Creature {
     public function new(x, y, ?g, ?l) {
         super(x, y, g, l);
 
-        var bmp = new Bitmap(Tile.fromColor(0xFFFF00), spr);
+        var bmp = new Bitmap(Tile.fromColor(0x2FD750), spr);
         bmp.scaleX = 32;
         bmp.scaleY = 32;
         bmp.x = -16;
@@ -23,7 +23,7 @@ class Ant extends Creature {
     override function midUpdate() {
         super.midUpdate();
         
-        x += 5 * deltaTime;
+        x -= 5 * deltaTime;
         // TODO: Use max distance
     }
 

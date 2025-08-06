@@ -28,6 +28,7 @@ class MainGame extends Game {
         playSpace = new PlaySpace(this);
 
         new Ant(100, 0, this);
+        new SpiderStrider(0, 0, this);
 
         selected = new NodeEntity(this);
 

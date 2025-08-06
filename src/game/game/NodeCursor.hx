@@ -44,19 +44,19 @@ class NodeCursor extends Entity<MainGame> {
 
         // attacher.spr.visible = numCloseNodes <= 5;
 
-        var overlappingAnt:Ant = null;
+        var overlappingCreature:Creature = null;
         for (ant in game.entities) {
-            if (!(ant is Ant))
+            if (!(ant is Creature))
                 continue;
-            var ant:Ant = cast ant;
+            var ant:Creature = cast ant;
             if (ant.harvester == null && ant.overlapsXY(x, y)) {
-                overlappingAnt = ant;
+                overlappingCreature = ant;
                 break;
             }
         }
 
         // TODO: this is wrong but not fully wrong
-        if (overlappingAnt == null) {
+        if (overlappingCreature == null) {
             if (dx * dx + dy * dy > 75 * 75) {
                 var dist = Math.sqrt(dx * dx + dy * dy);
                 dx = dx / dist * 75;
@@ -68,20 +68,18 @@ class NodeCursor extends Entity<MainGame> {
         }
 
         if (Key.isReleased(Key.MOUSE_LEFT)) {
-            if (overlappingAnt != null) {
-                harvestAnt(overlappingAnt);
+            if (overlappingCreature != null) {
+                harvestCreature(overlappingCreature);
             } else {
                 placeNewNode();
             }
         }
     }
 
-    function harvestAnt(ant:Ant) {
+    function harvestCreature(creature:Creature) {
         // TODO: Check to make sure that it's actually within range=75.
         // TODO: Make the range not a magic number plastered everywhere.
-        game.addScore(x, y, 50);
-        game.addMoney(x, y, 25);
-        ant.harvester = placeNewNodeImpl();
+        creature.harvest(placeNewNodeImpl());
     }
 
     function placeNewNode() {

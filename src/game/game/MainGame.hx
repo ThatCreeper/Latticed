@@ -12,6 +12,9 @@ class MainGame extends Game {
     public var score = 0;
     public var money = 100;
 
+    var lastMouseX = 0.0;
+    var lastMouseY = 0.0;
+
     public function new() {
         super();
         // TODO: This is just debug
@@ -42,10 +45,21 @@ class MainGame extends Game {
         if (Key.isDown(Key.DOWN))
             camera.sy += 3 * tmod;
 
-        if (Key.isPressed(Key.QWERTY_EQUALS))
+        if (Key.isDown(Key.MOUSE_RIGHT) &&
+            (s2d.mouseX != lastMouseX ||
+             s2d.mouseY != lastMouseY)) {
+            camera.x -= s2d.mouseX - lastMouseX;
+            camera.y -= s2d.mouseY - lastMouseY;
+        }
+
+        if (Key.isPressed(Key.QWERTY_EQUALS) ||
+            Key.isPressed(Key.MOUSE_WHEEL_UP)) {
             camera.sscale *= 2;
-        if (Key.isPressed(Key.QWERTY_MINUS))
+        }
+        if (Key.isPressed(Key.QWERTY_MINUS) ||
+            Key.isPressed(Key.MOUSE_WHEEL_DOWN)) {
             camera.sscale /= 2;
+        }
 
         if (camera.sscale < 1)
             camera.sscale = 1;
@@ -54,6 +68,9 @@ class MainGame extends Game {
     override function postUpdate() {
         super.postUpdate();
         updateGUI();
+
+        lastMouseX = s2d.mouseX;
+        lastMouseY = s2d.mouseY;
     }
 
     function updateGUI():Void {

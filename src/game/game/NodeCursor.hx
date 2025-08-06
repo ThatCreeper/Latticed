@@ -26,8 +26,6 @@ class NodeCursor extends Entity<MainGame> {
         var dx = x - game.selected.x;
         var dy = y - game.selected.y;
 
-        var numCloseNodes = 1;
-
         for (node in game.entities) {
             if (!(node is NodeEntity))
                 continue;
@@ -37,8 +35,6 @@ class NodeCursor extends Entity<MainGame> {
             var dx1 = x - node.x;
             var dy1 = y - node.y;
             var hypot = M.hypotSqr(dx1, dy1);
-            if (hypot <= 75 * 75)
-                numCloseNodes++;
             if (game.selected.disposed || hypot * 2 < M.hypotSqr(dx, dy)) {
                 game.selected = node;
                 dx = dx1;
@@ -74,7 +70,7 @@ class NodeCursor extends Entity<MainGame> {
             if (overlappingAnt != null) {
                 harvestAnt(overlappingAnt);
             } else {
-                placeNewNode(numCloseNodes);
+                placeNewNode();
             }
         }
     }
@@ -87,12 +83,19 @@ class NodeCursor extends Entity<MainGame> {
         ant.harvester = placeNewNodeImpl();
     }
 
-    function placeNewNode(connections) {
+    function placeNewNode() {
         trace("Place!");
 
-        if (connections > 5) {
-            new Toast(x, y, 3, "Too many connections!", 0xFF0000);
+        var connections = 0;
+        for (node in game.entities) {
+            if (!(node is NodeEntity))
+                continue;
+            if (M.distSqr(x, y, node.x, node.y) < 75 * 75)
+                connections++;
+        }
 
+        if (connections > 5) {
+            connectionsToast();
             return;
         }
 
@@ -102,6 +105,10 @@ class NodeCursor extends Entity<MainGame> {
 
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
         // hxd.Res.winnav.play();
+    }
+
+    function connectionsToast() {
+        new Toast(x, y, 3, "Too many connections!", 0xFF0000);
     }
     
     function placeNewNodeImpl():NodeEntity {
@@ -124,6 +131,7 @@ class NodeCursor extends Entity<MainGame> {
             node.connections.add(attacher);
             ent.connections.add(attacher);
         }
+
         return ent;
     }
 }

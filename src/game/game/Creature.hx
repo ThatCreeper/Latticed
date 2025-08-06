@@ -17,6 +17,8 @@ abstract class Creature extends MGEntity {
     override function update() {
         super.update();
 
+        if (game.gameOvered) return;
+        
         spr.alpha = harvester == null ? 1.0 : 0.5;
 
         midUpdate();

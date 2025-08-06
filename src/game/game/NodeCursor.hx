@@ -15,6 +15,7 @@ class NodeCursor extends Entity<MainGame> {
         spr.addChild(graphic);
         
         attacher = new CursorAttacher(g, g.worldlyHudLayer);
+        attach(attacher);
     }
 
     override function update() {

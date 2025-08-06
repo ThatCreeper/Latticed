@@ -3,9 +3,9 @@ package game.game;
 import h2d.Graphics;
 
 class NodeEntity extends Entity<MainGame> {
-    public var maxTimeRemaining = 60.0;
-    public var timeRemaining = 0.0;
-    public var frozen = false;
+    // public var maxTimeRemaining = 60.0;
+    // public var timeRemaining = 0.0;
+    // public var frozen = false;
     public var connections = new List<NodeAttacher>();
     
     public function new(?g, ?layer) {
@@ -16,13 +16,13 @@ class NodeEntity extends Entity<MainGame> {
         graphic.endFill();
         spr.addChild(graphic);
 
-        timeRemaining = maxTimeRemaining;
+        // timeRemaining = maxTimeRemaining;
     }
 
     override function update() {
         super.update();
-        if (frozen)
-            return;
+        // if (frozen)
+        //     return;
         // if (game.selected == this)
         //     return;
         // var q = connections.length;

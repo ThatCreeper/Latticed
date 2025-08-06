@@ -10,7 +10,7 @@ camera-coords {
     margin-bottom: 5;
 }
 
-text {
+.infobox text {
     color: white;
     margin: 5;
     text-shadow: 0 1 black;
@@ -22,4 +22,25 @@ text {
 
 #m {
     color :#ffe2a5;
+}
+
+lose-u-i {
+    padding: 20;
+    padding-top: 2;
+    background: #FF0000;
+    y: 20;
+    layout: vertical;
+}
+
+lose-u-i .header {
+    color: #FFFFFF;
+    scale: 4;
+    line-spacing: 1;
+}
+
+lose-u-i .score {
+    color: #FFFFFF;
+    margin-top: 10;
+    halign: middle;
+    scale: 2;
 }

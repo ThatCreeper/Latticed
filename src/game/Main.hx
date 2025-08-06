@@ -1,5 +1,6 @@
 package game;
 
+import h2d.domkit.Style;
 import hxd.Cursor;
 import hxd.Pad;
 import h2d.Scene;
@@ -18,6 +19,7 @@ class Main extends hxd.App {
             return 60 / FPS;
         }
     public static var pad: Null<Pad> = null;
+    public static var style: Style = null;
 
     public static var INST: Main;
 
@@ -39,6 +41,10 @@ class Main extends hxd.App {
         #end
 
         hxd.snd.Manager.get();
+
+        style = new h2d.domkit.Style();
+        style.load(hxd.Res.styles);
+        style.allowInspect = true;
 
         Pad.wait(p -> {
             pad = p;

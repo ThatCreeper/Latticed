@@ -14,6 +14,9 @@ class MainGame extends Game {
     public var money = 100;
     public var playSpace: PlaySpace;
 
+    public var timeUntilDeath = 10.99;
+    public var gameOvered = false;
+
     var lastMouseX = 0.0;
     var lastMouseY = 0.0;
 
@@ -67,6 +70,19 @@ class MainGame extends Game {
 
         if (camera.sscale < 1)
             camera.sscale = 1;
+
+        if (!gameOvered) {
+            if (money <= 0) {
+                timeUntilDeath -= deltaTime;
+            } else {
+                timeUntilDeath = 10.99;
+            }
+            if (timeUntilDeath <= 0) {
+                gameOvered = true;
+                cursor.remove();
+                new LoseScreen(this, hudLayer);
+            }
+        }
     }
 
     override function postUpdate() {
@@ -81,7 +97,7 @@ class MainGame extends Game {
         camCoords.cx.text = Std.string(Math.floor(camera.x));
         camCoords.cy.text = Std.string(Math.floor(camera.y));
         camCoords.e.text = Std.string(entities.length);
-        camCoords.t.text = Std.string(selected.timeRemaining);
+        camCoords.t.text = Std.string(Math.floor(timeUntilDeath));
         camCoords.p.text = Std.string(score);
         camCoords.m.text = Std.string(money);
     }

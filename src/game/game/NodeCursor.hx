@@ -44,6 +44,14 @@ class NodeCursor extends Entity<MainGame> {
 
         // attacher.spr.visible = numCloseNodes <= 5;
 
+        if (dx * dx + dy * dy > 75 * 75) {
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            dx = dx / dist * 75;
+            dy = dy / dist * 75;
+            x = dx + game.selected.x;
+            y = dy + game.selected.y;
+        }
+
         var overlappingCreature:Creature = null;
         for (ant in game.entities) {
             if (!(ant is Creature))
@@ -57,13 +65,6 @@ class NodeCursor extends Entity<MainGame> {
 
         // TODO: this is wrong but not fully wrong
         if (overlappingCreature == null) {
-            if (dx * dx + dy * dy > 75 * 75) {
-                var dist = Math.sqrt(dx * dx + dy * dy);
-                dx = dx / dist * 75;
-                dy = dy / dist * 75;
-                x = dx + game.selected.x;
-                y = dy + game.selected.y;
-            }
             y = Math.max(0, y);
         }
 

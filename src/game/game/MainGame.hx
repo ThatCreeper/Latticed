@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Bitmap;
 import game.Entity;
 import hxd.Key;
 import h2d.col.Point;
@@ -38,6 +39,7 @@ class MainGame extends Game {
 
         cursor = new NodeCursor(this, worldlyHudLayer);
 
+        new Bitmap(hxd.Res.freeplay.toTile(), hudLayer);
         camCoords = new CameraCoords(0, 0, hudLayer);
 
         hxd.Res.latticed.play(true, 0).fadeTo(0.6);

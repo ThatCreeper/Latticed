@@ -90,7 +90,7 @@ class MainGame extends Game {
         }
 
         if (Key.isPressed(Key.Q))
-            new Ant(camera.x, 0);
+            playSpace.screenshot();
     }
 
     override function postUpdate() {

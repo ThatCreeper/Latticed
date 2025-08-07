@@ -92,6 +92,8 @@ class PlaySpace extends MGEntity {
         target.dispose();
         File.saveBytes("dat-screenshot.png", pixels.toPNG());
         pixels.dispose();
+        if (Sys.systemName() == "Windows")
+            Sys.command("start", ["dat-screenshot.png"]);
     }
 
     // A modified version of Scene.captureBitmap

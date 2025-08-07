@@ -24,6 +24,7 @@ class LoseButton extends h2d.Flow implements h2d.domkit.Object {
             interactive.cursor = Default;
             onClick();
         }
+        interactive.onOver = _->interactive.cursor=Button;
     }
 
     public dynamic function onClick() {
@@ -36,7 +37,9 @@ class LoseUI extends h2d.Flow implements h2d.domkit.Object {
         <lose-u-i>
             <text class="header" text={"You lost!"}/>
             <html-text class="score" text={'Ending score: <font color="#00FF00">$score</font>'}/>
-            <lose-button public id="btn" text={"Keep playing..."}/>
+            <lose-button id="scrnsht" text={"Save a picture"}/>
+            <lose-button id="restartbtn" text={"Start anew"}/>
+            <lose-button id="btn" text={"Keep playing..."}/>
         </lose-u-i>;
 
     public function new(score:Float, ?parent) {
@@ -45,7 +48,11 @@ class LoseUI extends h2d.Flow implements h2d.domkit.Object {
 
         Main.style.addObject(this);
         btn.onClick = ()->keepPlaying();
+        scrnsht.onClick = ()->screenshot();
+        restartbtn.onClick = ()->restart();
     }
 
     public dynamic function keepPlaying() {}
+    public dynamic function screenshot() {}
+    public dynamic function restart() {}
 }

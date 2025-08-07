@@ -108,6 +108,13 @@ class NodeCursor extends Entity<MainGame> {
 
         if (game.cashCheckToast(5, x, y + 5, "You need 5 nutrients\nto make a node!")) return;
 
+        if (game.s2d.mouseX < scrwid / 3 ||
+            game.s2d.mouseX > (scrwid * 2) / 3 ||
+            game.s2d.mouseY < scrhei / 3 ||
+            game.s2d.mouseY > (scrhei * 2) / 3) {
+            camera.sx = x;
+            camera.sy = y;
+        }
         var ent = placeNewNodeImpl();
 
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
@@ -124,8 +131,6 @@ class NodeCursor extends Entity<MainGame> {
         var ent = new NodeEntity();
         ent.x = x;
         ent.y = y;
-        camera.sx = ent.x;
-        camera.sy = ent.y;
         game.selected = ent;
 
         for (node in game.entities) {

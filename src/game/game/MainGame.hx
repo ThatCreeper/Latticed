@@ -23,6 +23,7 @@ class MainGame extends Game {
 
     var lastMouseX = 0.0;
     var lastMouseY = 0.0;
+	public var placeDelay = 0;
 
     public function new() {
         super();
@@ -43,7 +44,7 @@ class MainGame extends Game {
         cursor = new NodeCursor(this, worldlyHudLayer);
 
         new Bitmap(hxd.Res.freeplay.toTile(), hudLayer);
-        finishButton = new Interactive(45, 28, hudLayer); // FINISH BUTTON HARDCODED
+        finishButton = new Interactive(90, 56, hudLayer); // FINISH BUTTON HARDCODED
         new Bitmap(hxd.Res.finish.toTile(), finishButton);
         finishButton.onClick = finish;
 
@@ -103,6 +104,8 @@ class MainGame extends Game {
 
         if (Key.isPressed(Key.Q))
             playSpace.screenshot();
+
+        placeDelay--;
     }
 
     override function postUpdate() {
@@ -150,4 +153,15 @@ class MainGame extends Game {
         super.dispose();
         hxd.Res.latticed.stop();
     }
+
+    public function keepPlaying() {
+        if (!gameOvered) return;
+        money = 100000;
+        timeUntilDeath = 11;
+        gameOvered = false;
+        removeIf(e->e is LoseScreen);
+        cursor = new NodeCursor(this, worldlyHudLayer);
+        placeDelay = 3;
+    }
+    
 }

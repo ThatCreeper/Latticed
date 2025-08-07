@@ -9,6 +9,7 @@ class LoseScreen extends MGEntity {
         super(g, l);
 
         ui = new LoseUI(game.score,spr);
+        ui.keepPlaying = game.keepPlaying;
     }
 
     override function postUpdate() {

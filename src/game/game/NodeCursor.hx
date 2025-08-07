@@ -71,7 +71,8 @@ class NodeCursor extends Entity<MainGame> {
         //     y = Math.max(0, y);
         // }
 
-        if (Key.isReleased(Key.MOUSE_LEFT)) {
+        if (Key.isReleased(Key.MOUSE_LEFT) &&
+            game.placeDelay < 0) {
             if (overlappingCreature != null) {
                 harvestCreature(overlappingCreature);
             } else {

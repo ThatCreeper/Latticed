@@ -105,4 +105,10 @@ class Game extends TimeAware {
         for (e in entities) e.dispose();
         entities.clear();
     }
+
+    public function removeIf(pred:Entity<Dynamic>->Bool) {
+        for (e in entities)
+            if (pred(e))
+                e.remove();
+    }
 }

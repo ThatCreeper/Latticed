@@ -8,7 +8,7 @@ class CursorAttacher extends BaseAttacher {
     var tile: Bitmap;
 
     public function new(?g, ?layer) {
-        super(g);
+        super(g, layer);
 
         tile = new Bitmap(Tile.fromColor(0xFF0000, 2, 2), parent);
         tile.x = -1;

@@ -95,32 +95,31 @@ class PlaySpace extends MGEntity {
     }
 
     // A modified version of Scene.captureBitmap
-    function captureBitmapNoBitmap( s: h2d.Scene, tex : Texture ) {
-		var engine = Main.INST.engine;
+    function captureBitmapNoBitmap( s: h2d.Scene, tex : Texture ) @:privateAccess {
+        var engine = Main.INST.engine;
+        engine.begin();
+        engine.pushTarget(tex);
+        engine.setRenderZone(0, 0, tex.width, tex.height);
 
-		engine.begin();
-		engine.pushTarget(tex);
-		engine.setRenderZone(0, 0, tex.width, tex.height);
+        var ow = s.width, oh = s.height, ova = s.viewportA, ovd = s.viewportD, ovx = s.viewportX, ovy = s.viewportY;
+        s.width = tex.width;
+        s.height = tex.height;
+        s.viewportA = 2 / s.width;
+        s.viewportD = 2 / s.height;
+        s.viewportX = -1;
+        s.viewportY = -1;
+        s.posChanged = true;
+        s.render(engine);
+        engine.popTarget();
 
-		var ow = s.width, oh = s.height, ova = @:privateAccess s.viewportA, ovd = @:privateAccess s.viewportD, ovx = @:privateAccess s.viewportX, ovy = @:privateAccess s.viewportY;
-		@:privateAccess s.width = tex.width;
-		@:privateAccess s.height = tex.height;
-		@:privateAccess s.viewportA = 2 / s.width;
-		@:privateAccess s.viewportD = 2 / s.height;
-		@:privateAccess s.viewportX = -1;
-		@:privateAccess s.viewportY = -1;
-		@:privateAccess s.posChanged = true;
-		s.render(engine);
-		engine.popTarget();
-
-		@:privateAccess s.width = ow;
-		@:privateAccess s.height = oh;
-		@:privateAccess s.viewportA = ova;
-		@:privateAccess s.viewportD = ovd;
-		@:privateAccess s.viewportX = ovx;
-		@:privateAccess s.viewportY = ovy;
-		@:privateAccess s.posChanged = true;
-		engine.setRenderZone();
-		engine.end();
-	}
+        s.width = ow;
+        s.height = oh;
+        s.viewportA = ova;
+        s.viewportD = ovd;
+        s.viewportX = ovx;
+        s.viewportY = ovy;
+        s.posChanged = true;
+        engine.setRenderZone();
+        engine.end();
+    }
 }

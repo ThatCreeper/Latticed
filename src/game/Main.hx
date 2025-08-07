@@ -31,7 +31,7 @@ class Main extends hxd.App {
 
     override function init() {
         INST = this;
-        #if hl
+        #if (hl && debug)
         hxd.Res.initLocal();
         #else
         hxd.Res.initEmbed();

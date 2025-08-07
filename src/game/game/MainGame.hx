@@ -83,6 +83,9 @@ class MainGame extends Game {
                 new LoseScreen(this, hudLayer);
             }
         }
+
+        if (Key.isPressed(Key.Q))
+            new Ant(camera.x, 0);
     }
 
     override function postUpdate() {

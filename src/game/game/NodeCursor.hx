@@ -27,6 +27,7 @@ class NodeCursor extends Entity<MainGame> {
         var dx = x - game.selected.x;
         var dy = y - game.selected.y;
 
+        // TODO: ONLY DO THIS IF (a) SELECTED.DISPOSED OR (b) MOUSE HAS MOVED
         for (node in game.entities) {
             if (!(node is NodeEntity))
                 continue;

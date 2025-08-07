@@ -7,7 +7,7 @@ import h2d.Interactive;
 class LoseButton extends h2d.Flow implements h2d.domkit.Object {
     static var SRC =
         <lose-button>
-            <text public id="label" text={"!!!"}/>
+            <text public id="label"/>
         </lose-button>;
     
     @:p public var text(default, set): String;
@@ -19,7 +19,11 @@ class LoseButton extends h2d.Flow implements h2d.domkit.Object {
         initComponent();
 
         enableInteractive = true;
-        interactive.onClick = _->onClick();
+        interactive.cursor = Button;
+        interactive.onClick = _->{
+            interactive.cursor = Default;
+            onClick();
+        }
     }
 
     public dynamic function onClick() {

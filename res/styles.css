@@ -36,6 +36,7 @@ lose-u-i .header {
     color: #FFFFFF;
     scale: 4;
     line-spacing: 1;
+    halign: middle;
 }
 
 lose-u-i .score {
@@ -43,4 +44,18 @@ lose-u-i .score {
     margin-top: 10;
     halign: middle;
     scale: 2;
+}
+
+lose-u-i lose-button {
+    halign: middle;
+    background: #FFFFFF;
+    margin-top: 12;
+    padding-bottom: 8;
+    width: 300;
+}
+
+lose-button text {
+    color: #FF0000;
+    scale: 2;
+    text-align: center;
 }

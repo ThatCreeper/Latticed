@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Interactive;
 import h2d.Bitmap;
 import game.Entity;
 import hxd.Key;
@@ -17,6 +18,8 @@ class MainGame extends Game {
 
     public var timeUntilDeath = 10.99;
     public var gameOvered = false;
+
+    public var finishButton:Interactive;
 
     var lastMouseX = 0.0;
     var lastMouseY = 0.0;
@@ -40,9 +43,18 @@ class MainGame extends Game {
         cursor = new NodeCursor(this, worldlyHudLayer);
 
         new Bitmap(hxd.Res.freeplay.toTile(), hudLayer);
+        finishButton = new Interactive(45, 28, hudLayer); // FINISH BUTTON HARDCODED
+        new Bitmap(hxd.Res.finish.toTile(), finishButton);
+        finishButton.onClick = finish;
+
         camCoords = new CameraCoords(0, 0, hudLayer);
 
         hxd.Res.latticed.play(true, 0).fadeTo(0.6);
+    }
+
+    function finish(e:hxd.Event) {
+        money = 0;
+        timeUntilDeath = -1;
     }
 
     override function update() {
@@ -108,6 +120,8 @@ class MainGame extends Game {
         camCoords.t.text = Std.string(Math.floor(timeUntilDeath));
         camCoords.p.text = Std.string(score);
         camCoords.m.text = Std.string(money);
+
+        finishButton.x = scrwid - finishButton.width;
     }
 
     public function addScore(x:Float, y:Float, score:Int) {

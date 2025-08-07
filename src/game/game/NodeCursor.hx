@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Bitmap;
 import hxd.snd.effect.Pitch;
 import hxd.Key;
 import h2d.Graphics;
@@ -9,11 +10,13 @@ class NodeCursor extends Entity<MainGame> {
 
     public function new(g, ?layer) {
         super(g, layer);
-        var graphic = new Graphics();
-        graphic.beginFill(0x0000FF);
-        graphic.drawRoundedRect(-3, -3, 6, 6, 1);
-        graphic.endFill();
-        spr.addChild(graphic);
+        // var graphic = new Graphics();
+        // graphic.beginFill(0x0000FF);
+        // graphic.drawRoundedRect(-3, -3, 6, 6, 1);
+        // graphic.endFill();
+        // spr.addChild(graphic);
+        var bitmap = new Bitmap(hxd.Res.node.toTile(), spr);
+        bitmap.x = bitmap.y = -4;
         
         attacher = new CursorAttacher(g, g.worldlyHudLayer);
         attach(attacher);

@@ -58,10 +58,10 @@ class MainGame extends Game {
             camera.sy += 3 * tmod;
 
         if (Key.isDown(Key.MOUSE_RIGHT) &&
-            (s2d.mouseX != lastMouseX ||
-             s2d.mouseY != lastMouseY)) {
-            camera.x -= s2d.mouseX - lastMouseX;
-            camera.y -= s2d.mouseY - lastMouseY;
+            (mouseX != lastMouseX ||
+             mouseY != lastMouseY)) {
+            camera.x -= mouseX - lastMouseX;
+            camera.y -= mouseY - lastMouseY;
         }
 
         if (Key.isPressed(Key.QWERTY_EQUALS) ||
@@ -97,8 +97,8 @@ class MainGame extends Game {
         super.postUpdate();
         updateGUI();
 
-        lastMouseX = s2d.mouseX;
-        lastMouseY = s2d.mouseY;
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
     }
 
     function updateGUI():Void {

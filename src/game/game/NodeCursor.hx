@@ -22,8 +22,8 @@ class NodeCursor extends Entity<MainGame> {
     override function update() {
         super.update();
 
-        x = game.s2d.mouseX;
-        y = game.s2d.mouseY;
+        x = game.mouseX;
+        y = game.mouseY;
 
         var dx = x - game.selected.x;
         var dy = y - game.selected.y;

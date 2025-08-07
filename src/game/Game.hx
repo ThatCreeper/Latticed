@@ -11,6 +11,8 @@ class Game extends TimeAware {
     public var s2d: h2d.Scene;
     public var camera: Camera;
 
+    public var hudCamera: h2d.Camera;
+
     public var scrwid(get, never): Int;
         function get_scrwid() {
             return s2d.width;
@@ -19,11 +21,32 @@ class Game extends TimeAware {
         function get_scrhei() {
             return s2d.height;
         }
+    
+    public var mouseX(get, never): Float;
+        function get_mouseX() {
+            // Stupid, bad solution. But...
+            @:privateAccess s2d.camera.sync(null, true);
+            var pt = new Point(s2d.mouseX, 0);
+            s2d.camera.screenToCamera(pt);
+            return pt.x;
+        }
+    public var mouseY(get, never): Float;
+        function get_mouseY() {
+            @:privateAccess s2d.camera.sync(null, true);
+            var pt = new Point(0, s2d.mouseY);
+            s2d.camera.screenToCamera(pt);
+            return pt.y;
+        }
 
     public function new() {
         initLayers();
         entities = new List();
         camera = new Camera();
+
+        hudCamera = new h2d.Camera(s2d);
+        hudCamera.layerVisible = (idx) -> idx == 3;
+        s2d.camera.layerVisible = (idx) -> idx != 3;
+        s2d.interactiveCamera = hudCamera;
     }
 
     function initLayers() {
@@ -53,16 +76,6 @@ class Game extends TimeAware {
         for (e in entities)
             e.postUpdate();
         camera.update(s2d, Main.GameSpeed > 0.1 && cd.has("shake"));
-        reverseHudCamera();
-    }
-
-    public function reverseHudCamera() {
-        var pos = new Point();
-        @:privateAccess s2d.camera.sync(null, true);
-        s2d.camera.cameraToScreen(pos);
-        hudLayer.setScale(1 / s2d.camera.scaleX);
-        hudLayer.x = -pos.x / s2d.camera.scaleX;
-        hudLayer.y = -pos.y / s2d.camera.scaleX;
     }
 
     public function tick() {

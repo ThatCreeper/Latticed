@@ -13,9 +13,13 @@ class NodeAttacher extends BaseAttacher {
         this.from = from;
         this.to = to;
 
-        tile = new Bitmap(Tile.fromColor(0xFF00FF, 2, 2), parent);
-        tile.x = -1;
+        // tile = new Bitmap(Tile.fromColor(0xFF00FF, 2, 2), parent);
+        // tile.x = -1;
+        // tile.y = -2;
+        tile = new Bitmap(hxd.Res.fiber.toTile(), parent);
+        tile.x = -2.5;
         tile.y = -2;
+        tile.scaleY = 2 / tile.tile.height;
         
         lookAt(from, to);
     }

@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Bitmap;
 import h2d.Graphics;
 
 class NodeEntity extends Entity<MainGame> {
@@ -10,11 +11,13 @@ class NodeEntity extends Entity<MainGame> {
     
     public function new(?g, ?layer) {
         super(g, layer);
-        var graphic = new Graphics();
-        graphic.beginFill(0xFFFFFF);
-        graphic.drawRoundedRect(-4, -4, 8, 8, 1);
-        graphic.endFill();
-        spr.addChild(graphic);
+        // var graphic = new Graphics();
+        // graphic.beginFill(0xFFFFFF);
+        // graphic.drawRoundedRect(-4, -4, 8, 8, 1);
+        // graphic.endFill();
+        // spr.addChild(graphic);
+        var bitmap = new Bitmap(hxd.Res.node.toTile(), spr);
+        bitmap.x = bitmap.y = -4;
 
         // timeRemaining = maxTimeRemaining;
     }

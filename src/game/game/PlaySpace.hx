@@ -16,10 +16,10 @@ class PlaySpace extends MGEntity {
 
     public function new(g, ?l) {
         super(g, l);
-        top = initBitmap(true);
-        bottom = initBitmap(true);
-        left = initBitmap(false);
-        right = initBitmap(false);
+        // top = initBitmap(true);
+        // bottom = initBitmap(true);
+        // left = initBitmap(false);
+        // right = initBitmap(false);
     }
 
     function initBitmap(horizontal) {
@@ -52,14 +52,14 @@ class PlaySpace extends MGEntity {
         score /= 20; // random number i picked
         game.addScore(x, y - 20, Math.ceil(score));
         
-        top.x = bottom.x = minX;
-        top.scaleX = bottom.scaleX = maxX - minX;
-        top.y = minY;
-        bottom.y = maxY;
+        // top.x = bottom.x = minX;
+        // top.scaleX = bottom.scaleX = maxX - minX;
+        // top.y = minY;
+        // bottom.y = maxY;
 
-        left.y = right.y = minY;
-        left.scaleY = right.scaleY = maxY - minY;
-        left.x = minX;
-        right.x = maxX;
+        // left.y = right.y = minY;
+        // left.scaleY = right.scaleY = maxY - minY;
+        // left.x = minX;
+        // right.x = maxX;
     }
 }

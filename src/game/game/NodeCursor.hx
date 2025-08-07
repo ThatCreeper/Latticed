@@ -1,5 +1,6 @@
 package game.game;
 
+import hxd.snd.effect.Pitch;
 import hxd.Key;
 import h2d.Graphics;
 
@@ -66,9 +67,9 @@ class NodeCursor extends Entity<MainGame> {
         }
 
         // TODO: this is wrong but not fully wrong
-        if (overlappingCreature == null) {
-            y = Math.max(0, y);
-        }
+        // if (overlappingCreature == null) {
+        //     y = Math.max(0, y);
+        // }
 
         if (Key.isReleased(Key.MOUSE_LEFT)) {
             if (overlappingCreature != null) {
@@ -107,11 +108,12 @@ class NodeCursor extends Entity<MainGame> {
 
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
         game.playSpace.register(x, y);
-        // hxd.Res.winnav.play();
+        hxd.Res.latticed_place.play();
     }
 
     function connectionsToast() {
         new Toast(x, y, 3, "Too many connections!", 0xFF0000);
+        hxd.Res.latticed_nomoney.play();
     }
     
     function placeNewNodeImpl():NodeEntity {

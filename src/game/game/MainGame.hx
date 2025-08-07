@@ -25,19 +25,22 @@ class MainGame extends Game {
         // TODO: This is just debug
         camera.scale = 2;
         camera.shakeIntensity = 1;
+        money = 100000;
 
-        new Background(this, bgLayer);
+        // new Background(this, bgLayer);
         
         playSpace = new PlaySpace(this);
 
-        new Ant(100, 0, this);
-        new SpiderStrider(0, 0, this);
+        // new Ant(100, 0, this);
+        // new SpiderStrider(0, 0, this);
 
         selected = new NodeEntity(this);
 
         cursor = new NodeCursor(this, worldlyHudLayer);
 
         camCoords = new CameraCoords(0, 0, hudLayer);
+
+        hxd.Res.latticed.play(true, 0).fadeTo(0.6);
     }
 
     override function update() {
@@ -114,6 +117,7 @@ class MainGame extends Game {
     public function cashCheckToast(required, x, y, text) {
         if (money < required) {
             new Toast(x, y, 3, text, 0xFF0000, this);
+            hxd.Res.latticed_nomoney.play();
             return true;
         }
         money -= required;
@@ -124,5 +128,10 @@ class MainGame extends Game {
     public function addMoney(x:Float, y:Float, money:Int) {
         this.money += money;
         new Toast(x, y + 5, 3, '+${money}', 0x00FF00, this, this.worldlyHudLayer);
+    }
+
+    override function dispose() {
+        super.dispose();
+        hxd.Res.latticed.stop();
     }
 }

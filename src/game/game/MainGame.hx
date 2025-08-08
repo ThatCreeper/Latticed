@@ -49,6 +49,9 @@ class MainGame extends Game {
         finishButton.onClick = finish;
 
         camCoords = new CameraCoords(0, 0, hudLayer);
+        #if !debug
+        camCoords.visible = false;
+        #end
 
         hxd.Res.latticed.play(true, 0).fadeTo(0.6);
     }

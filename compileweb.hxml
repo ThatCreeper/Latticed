@@ -1,4 +1,7 @@
 -cp src
 -lib heaps
+-lib domkit
+-lib stb_ogg_sound
+-D domkit_heaps
 -js bin/game.js
 -main game.Main

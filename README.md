@@ -1,4 +1,4 @@
-# Latticed (Working Title)
+# Hypha
 
 A game about being a fungus ecosystem or something.
 

@@ -90,7 +90,36 @@ class PlaySpace extends MGEntity {
         var pixels = target.capturePixels();
 
         target.dispose();
+        #if hl
         File.saveBytes("dat-screenshot.png", pixels.toPNG());
+        #elseif js
+        {
+            var canvas: js.html.CanvasElement = cast js.Browser.document.createElement("canvas");
+            canvas.width = pixels.width;
+            canvas.height = pixels.height;
+            var ctx = canvas.getContext2d();
+            var dat = ctx.createImageData(pixels.width, pixels.height);
+            for (y in 0...pixels.height) {
+                for (x in 0...pixels.width) {
+                    var pxl = pixels.getPixel(x, y);
+                    var r = (pxl >> 24) & 0xFF;
+                    var g = (pxl >> 16) & 0xFF;
+                    var b = (pxl >>  8) & 0xFF;
+                    var a = (pxl >>  0) & 0xFF;
+                    dat.data[(y * pixels.width + x) * 4 + 0] = Std.int(r * 0xFF / a); // R
+                    dat.data[(y * pixels.width + x) * 4 + 1] = Std.int(g * 0xFF / a); // G
+                    dat.data[(y * pixels.width + x) * 4 + 2] = Std.int(b * 0xFF / a); // B
+                    // dat.data[(y * pixels.width + x) * 4 + 3] = a;
+                    dat.data[(y * pixels.width + x) * 4 + 3] = 0xFF;  // A
+                }
+            }
+            ctx.putImageData(dat, 0, 0);
+            var a:js.html.LinkElement = cast js.Browser.document.createElement("a");
+            a.href = canvas.toDataURL("image/png");
+            a.setAttribute("download", "dat-screenshot.png");
+            a.click();
+        }
+        #end
         pixels.dispose();
         #if hl
         if (Sys.systemName() == "Windows")

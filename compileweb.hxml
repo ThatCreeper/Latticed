@@ -5,3 +5,4 @@
 -D domkit_heaps
 -js bin/game.js
 -main game.Main
+--dce full

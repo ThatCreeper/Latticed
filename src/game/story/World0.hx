@@ -1,5 +1,6 @@
 package game.story;
 
+import h2d.Bitmap;
 import game.game.MusicManager;
 import hxd.Key;
 import hxd.snd.Channel;
@@ -41,6 +42,10 @@ which can use its hypha";
 
     var music: Channel;
 
+    var iconPhase = 0;
+    var iconTime = 0.0;
+    var heapsIcon:Bitmap;
+
     public function new() {
         super();
 
@@ -55,6 +60,10 @@ which can use its hypha";
         MusicManager.fadeOut(2);
         music = hxd.Res.latticed_intro.play();
         music.volume = 0.6;
+
+        heapsIcon = new Bitmap(hxd.Res.heaps.toTile(), hudLayer);
+        heapsIcon.alpha = 0;
+        heapsIcon.setScale(4);
     }
 
     override function update() {
@@ -64,6 +73,31 @@ which can use its hypha";
             Main.setGame(new World1());
 
         time += deltaTime;
+        iconTime += deltaTime;
+
+        if (iconPhase == 0 && iconTime > 6) {
+            iconTime -= 6;
+            iconPhase = 1;
+        }
+        if (iconPhase == 1) {
+            heapsIcon.alpha = iconTime;
+            if (iconTime >= 1) {
+                iconTime -= 1;
+                iconPhase = 2;
+            }
+        }
+        if (iconPhase == 2 && iconTime >= 2) {
+            iconTime -= 2;
+            iconPhase = 3;
+        }
+        if (iconPhase == 3) {
+            heapsIcon.alpha = 1 - iconTime;
+            if (iconTime >= 1) {
+                heapsIcon.alpha = 0;
+                iconTime -= 1;
+                iconPhase = 4;
+            }
+        }
 
         if (step == -1 && typer.finished()) {
             step = -2;

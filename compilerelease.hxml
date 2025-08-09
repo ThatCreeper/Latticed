@@ -6,3 +6,5 @@
 -D domkit_heaps
 -hl fb_release.hl
 -main game.Main
+-D analyzer-optimize
+--dce full

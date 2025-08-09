@@ -6,3 +6,4 @@
 -js bin/game.js
 -main game.Main
 --dce full
+-D analyzer-optimize

@@ -64,7 +64,7 @@ If you run out, you lose");
         }
         if (phase == 8 &&
             hudLayer.alpha <= 0) {
-            Main.setGame(new game.game.FreePlayGame());
+            Main.setGame(new StorySelectionGame());
         }
     }
 

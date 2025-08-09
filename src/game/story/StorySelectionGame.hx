@@ -12,7 +12,11 @@ class StorySelectionGame extends Game {
         var text = new Text(hxd.res.DefaultFont.get(), gameLayer);
         text.setScale(2);
         text.textAlign = Center;
-        text.text = "No menu yet!\nPress 1 for FreePlay\n2 for World0\n3 for World1";
+        text.text =
+"No menu yet!
+Press 1 for FreePlay
+2 for World0
+3 for World1";
         text.y = -text.textHeight;
 
         MusicManager.set(hxd.Res.latticed_tempmenu);

@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Tile;
 import haxe.exceptions.NotImplementedException;
 import h2d.Interactive;
 import h2d.Bitmap;
@@ -25,6 +26,8 @@ abstract class BaseMainGame extends Game {
     var lastMouseY = 0.0;
 	public var placeDelay = 0;
 
+    var deathOverlay:Bitmap;
+
     public function new() {
         super();
         // TODO: This is just debug
@@ -42,6 +45,9 @@ abstract class BaseMainGame extends Game {
         selected = new NodeEntity(this);
 
         cursor = new NodeCursor(this, worldlyHudLayer);
+        deathOverlay = new Bitmap(Tile.fromColor(0xFF0000, 1, 1), hudLayer);
+        deathOverlay.setScale(10000);
+        deathOverlay.alpha = 0;
 
         camCoords = new CameraCoords(0, 0, hudLayer);
         #if !debug
@@ -110,6 +116,11 @@ abstract class BaseMainGame extends Game {
                 die();
             }
         }
+        deathOverlay.alpha = M.lerpC(deathOverlay.alpha,
+            if (timeUntilDeath > deathTime - 0.1)
+                0
+            else
+                0.5, deltaTime / deathTime);
 
         // if (Key.isPressed(Key.Q))
         //     playSpace.screenshot();
@@ -172,6 +183,7 @@ abstract class BaseMainGame extends Game {
         if (!gameOvered) return;
         money = 100000;
         timeUntilDeath = 11;
+        deathTime = 1;
         gameOvered = false;
         removeIf(e->e is LoseScreen);
         cursor = new NodeCursor(this, worldlyHudLayer);

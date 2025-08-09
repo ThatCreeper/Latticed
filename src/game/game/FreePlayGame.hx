@@ -3,6 +3,7 @@ package game.game;
 class FreePlayGame extends BaseMainGame {
     public function new() {
         super();
+        deathTime = 1;
         addFreePlayUI();
         hxd.Res.latticed.play(true, 0).fadeTo(0.6);
     }

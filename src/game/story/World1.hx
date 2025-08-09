@@ -131,8 +131,10 @@ crowded and unable to form");
         if (phase == 6) {
             phase = 7;
             textBox.setText(
-"Have fun!");
-            MusicManager.fadeOut(4);
+"Use escape to
+open the pause screen
+and exit to the menu");
+            // MusicManager.fadeOut(4);
         }
     }
 

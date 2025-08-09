@@ -53,7 +53,7 @@ class Main extends hxd.App {
 
         ucd = new Cooldown();
         
-        setGame(new game.game.MainGame());
+        setGame(new game.game.FreePlayGame());
         newGameThisFrame = false;
     }
 

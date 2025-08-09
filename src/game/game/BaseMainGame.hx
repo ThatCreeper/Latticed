@@ -1,5 +1,6 @@
 package game.game;
 
+import haxe.exceptions.NotImplementedException;
 import h2d.Interactive;
 import h2d.Bitmap;
 import game.Entity;
@@ -8,7 +9,7 @@ import h2d.col.Point;
 import game.game.ui.CameraCoords;
 
 // TODO: Free play mode
-class MainGame extends Game {
+abstract class BaseMainGame extends Game {
     public var selected: NodeEntity;
     public var cursor: NodeCursor;
     var camCoords: CameraCoords;
@@ -18,8 +19,6 @@ class MainGame extends Game {
 
     public var timeUntilDeath = 10.99;
     public var gameOvered = false;
-
-    public var finishButton:Interactive;
 
     var lastMouseX = 0.0;
     var lastMouseY = 0.0;
@@ -43,17 +42,25 @@ class MainGame extends Game {
 
         cursor = new NodeCursor(this, worldlyHudLayer);
 
-        new Bitmap(hxd.Res.freeplay.toTile(), hudLayer);
-        finishButton = new Interactive(90, 56, hudLayer); // FINISH BUTTON HARDCODED
-        new Bitmap(hxd.Res.finish.toTile(), finishButton);
-        finishButton.onClick = finish;
-
         camCoords = new CameraCoords(0, 0, hudLayer);
         #if !debug
         camCoords.visible = false;
         #end
+    }
 
-        hxd.Res.latticed.play(true, 0).fadeTo(0.6);
+    function removeUI() {
+        finishButton?.remove();
+        freePlayIcon?.remove();
+    }
+
+    public var finishButton:Null<Interactive>;
+    var freePlayIcon:Null<Bitmap> = null;
+
+    function addFreePlayUI() {
+        freePlayIcon = new Bitmap(hxd.Res.freeplay.toTile(), hudLayer);
+        finishButton = new Interactive(90, 56, hudLayer); // FINISH BUTTON HARDCODED
+        new Bitmap(hxd.Res.finish.toTile(), finishButton);
+        finishButton.onClick = finish;
     }
 
     function finish(e:hxd.Event) {
@@ -127,7 +134,7 @@ class MainGame extends Game {
         camCoords.p.text = Std.string(score);
         camCoords.m.text = Std.string(money);
 
-        finishButton.x = scrwid - finishButton.width;
+        finishButton?.x = scrwid - finishButton.width;
     }
 
     public function addScore(x:Float, y:Float, score:Int) {
@@ -154,7 +161,6 @@ class MainGame extends Game {
 
     override function dispose() {
         super.dispose();
-        hxd.Res.latticed.stop();
     }
 
     public function keepPlaying() {
@@ -165,6 +171,11 @@ class MainGame extends Game {
         removeIf(e->e is LoseScreen);
         cursor = new NodeCursor(this, worldlyHudLayer);
         placeDelay = 3;
+        removeUI();
+        addFreePlayUI();
     }
     
+    public abstract function restart():Void;
+
+    public function onNewNode() {}
 }

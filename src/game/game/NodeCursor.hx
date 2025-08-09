@@ -5,7 +5,7 @@ import hxd.snd.effect.Pitch;
 import hxd.Key;
 import h2d.Graphics;
 
-class NodeCursor extends Entity<MainGame> {
+class NodeCursor extends MGEntity {
     var attacher: CursorAttacher;
 
     public function new(g, ?layer) {
@@ -88,6 +88,7 @@ class NodeCursor extends Entity<MainGame> {
         // TODO: Check to make sure that it's actually within range=75.
         // TODO: Make the range not a magic number plastered everywhere.
         creature.harvest(placeNewNodeImpl());
+        game.onNewNode();
     }
 
     function placeNewNode() {
@@ -120,6 +121,7 @@ class NodeCursor extends Entity<MainGame> {
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
         game.playSpace.register(x, y);
         hxd.Res.latticed_place.play();
+        game.onNewNode();
     }
 
     function connectionsToast() {

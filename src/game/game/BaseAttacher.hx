@@ -2,7 +2,7 @@ package game.game;
 
 import h2d.Object;
 
-class BaseAttacher extends Entity<MainGame> {
+class BaseAttacher extends MGEntity {
     var parent: Object;
 
     public function new(?g, ?layer) {
@@ -11,7 +11,7 @@ class BaseAttacher extends Entity<MainGame> {
         parent = new Object(spr);
     }
 
-    function lookAt(from: Entity<MainGame>, to: Entity<MainGame>) {
+    function lookAt(from: Entity<BaseMainGame>, to: Entity<BaseMainGame>) {
         x = from.x;
         y = from.y;
         var dx = to.x - x;

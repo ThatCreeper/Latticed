@@ -11,7 +11,7 @@ class LoseScreen extends MGEntity {
         ui = new LoseUI(game.score,spr);
         ui.keepPlaying = game.keepPlaying;
         ui.screenshot = game.playSpace.screenshot;
-        ui.restart = ()->Main.setGame(new MainGame());
+        ui.restart = game.restart;
     }
 
     override function postUpdate() {

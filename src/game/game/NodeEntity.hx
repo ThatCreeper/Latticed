@@ -3,7 +3,7 @@ package game.game;
 import h2d.Bitmap;
 import h2d.Graphics;
 
-class NodeEntity extends Entity<MainGame> {
+class NodeEntity extends MGEntity {
     // public var maxTimeRemaining = 60.0;
     // public var timeRemaining = 0.0;
     // public var frozen = false;

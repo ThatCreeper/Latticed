@@ -50,7 +50,10 @@ class NodeCursor extends MGEntity {
             var dx1 = x - node.x;
             var dy1 = y - node.y;
             var hypot = M.hypotSqr(dx1, dy1);
-            if (game.selected.disposed || hypot * 2 < M.hypotSqr(dx, dy)) {
+            if (game.selected.disposed ||
+                (hypot * 2 < M.hypotSqr(dx, dy) &&
+                 game.isValidNodeSpot(x, y, node.x, node.y) &&
+                 game.isValidNodeSpot(node.x, node.y, x, y))) {
                 game.selected = node;
                 dx = dx1;
                 dy = dy1;
@@ -65,6 +68,14 @@ class NodeCursor extends MGEntity {
             dy = dy / dist * 75;
             x = dx + game.selected.x;
             y = dy + game.selected.y;
+        }
+
+        if (game.isValidNodeSpot(x, y, game.selected.x, game.selected.y) &&
+            game.isValidNodeSpot(game.selected.x, game.selected.y, x, y)) {
+            attacher.spr.visible = true;
+        } else {
+            attacher.spr.visible = false;
+            return;
         }
 
         var overlappingCreature:Creature = null;
@@ -96,6 +107,7 @@ class NodeCursor extends MGEntity {
     function harvestCreature(creature:Creature) {
         // TODO: Check to make sure that it's actually within range=75.
         // TODO: Make the range not a magic number plastered everywhere.
+        if (game.cashCheckToast(5, x, y + 5, "You need 5 nutrients\nto make a node!")) return;
         creature.harvest(placeNewNodeImpl());
         game.onNewNode();
     }
@@ -127,6 +139,11 @@ class NodeCursor extends MGEntity {
             camera.sy = y;
         }
         var ent = placeNewNodeImpl();
+        if (ent.connections.length == 0) {
+            ent.remove();
+            game.addMoney(x, y, 5);
+            return;
+        }
 
         game.addScore(x, y, M.imin(10 * ent.connections.length, 50));
         game.playSpace.register(x, y);
@@ -140,7 +157,7 @@ class NodeCursor extends MGEntity {
     }
     
     function placeNewNodeImpl():NodeEntity {
-        var ent = new NodeEntity();
+        var ent = new NodeEntity(game);
         ent.x = x;
         ent.y = y;
         game.selected = ent;
@@ -153,11 +170,21 @@ class NodeCursor extends MGEntity {
                 continue;
             if (M.distSqr(node.x, node.y, ent.x, ent.y) > 76 * 76) // floating point bug prevention
                 continue;
-            var attacher = new NodeAttacher(node, ent);
+            if (!game.isValidNodeSpot(node.x, node.y, ent.x, ent.y) ||
+                !game.isValidNodeSpot(ent.x, ent.y, node.x, node.y))
+                continue;
+            var attacher = new NodeAttacher(node, ent, game);
             node.connections.add(attacher);
             ent.connections.add(attacher);
         }
 
         return ent;
+    }
+
+    public function placeNodeProgramatically(x, y) {
+        this.x = x;
+        this.y = y;
+        placeNewNodeImpl();
+        game.playSpace.register(x, y);
     }
 }

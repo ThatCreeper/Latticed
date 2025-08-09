@@ -19,7 +19,7 @@ abstract class Creature extends MGEntity {
 
         if (game.gameOvered) return;
         
-        spr.alpha = harvester == null ? 1.0 : 0.5;
+        // spr.alpha = harvester == null ? 1.0 : 0.5;
 
         midUpdate();
 
@@ -55,8 +55,8 @@ abstract class Creature extends MGEntity {
     }
 
     public function harvest(spawnedHarvestNode:NodeEntity) {
-        game.addScore(x, y, 50);
-        game.addMoney(x, y, 25);
+        // game.addScore(x, y, 50);
+        // game.addMoney(x, y, 25);
         harvester = spawnedHarvestNode;
     }
 

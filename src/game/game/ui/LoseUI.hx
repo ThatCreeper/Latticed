@@ -6,7 +6,7 @@ import h2d.Interactive;
 class LoseUI extends h2d.Flow implements h2d.domkit.Object {
     static var SRC =
         <lose-u-i>
-            <text class="header" text={"You lost!"}/>
+            <text class="header" text={won ? "Victory!" : "You lost!"}/>
             <html-text class="score" text={'Ending score: <font color="#00FF00">$score</font>'}/>
             <lose-button id="scrnsht" text={"Save a picture"}/>
             <lose-button id="exit" text={"Exit to menu"}/>
@@ -14,7 +14,7 @@ class LoseUI extends h2d.Flow implements h2d.domkit.Object {
             <lose-button id="btn" text={"Keep playing..."}/>
         </lose-u-i>;
 
-    public function new(score:Float, ?parent) {
+    public function new(won:Bool, score:Float, ?parent) {
         super(parent);
         initComponent();
 

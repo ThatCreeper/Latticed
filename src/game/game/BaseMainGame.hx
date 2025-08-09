@@ -19,7 +19,7 @@ abstract class BaseMainGame extends Game {
     public var playSpace: PlaySpace;
 
     public var timeUntilDeath = 10.99;
-    public var deathTime = 6;
+    public var deathTime = 4;
     public var gameOvered = false;
 
     var lastMouseX = 0.0;
@@ -142,7 +142,13 @@ abstract class BaseMainGame extends Game {
     function die() {
         gameOvered = true;
         cursor.remove();
-        new LoseScreen(this, hudLayer);
+        new LoseScreen(false, this, hudLayer);
+    }
+
+    public function win() {
+        gameOvered = true;
+        cursor.remove();
+        new LoseScreen(true, this, hudLayer);
     }
 
     function updateGUI():Void {
@@ -201,6 +207,10 @@ abstract class BaseMainGame extends Game {
     public function onFailedCrowdedNode() {}
 
     public function isPaused() {
-        return instanceExists(e->e is PauseScreen);
+        return instanceExists(e->e is PauseScreen || e is OverlayEntity);
+    }
+
+    public function isValidNodeSpot(x:Float,y:Float,sx:Float,sy:Float): Bool {
+        return true;
     }
 }

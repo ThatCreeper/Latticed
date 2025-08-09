@@ -31,5 +31,7 @@ Press 1 for FreePlay
             Main.setGame(new World0());
         if (Key.isPressed(Key.NUMBER_3))
             Main.setGame(new World1());
+        if (Key.isPressed(Key.NUMBER_4))
+            Main.setGame(new World2());
     }
 }

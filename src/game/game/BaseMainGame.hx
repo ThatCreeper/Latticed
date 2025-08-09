@@ -50,9 +50,9 @@ abstract class BaseMainGame extends Game {
         deathOverlay.alpha = 0;
 
         camCoords = new CameraCoords(0, 0, hudLayer);
-        #if !debug
-        camCoords.visible = false;
-        #end
+        // #if !debug
+        // camCoords.visible = false;
+        // #end
     }
 
     function removeUI() {
@@ -146,10 +146,10 @@ abstract class BaseMainGame extends Game {
     }
 
     function updateGUI():Void {
-        camCoords.cx.text = Std.string(Math.floor(camera.x));
-        camCoords.cy.text = Std.string(Math.floor(camera.y));
-        camCoords.e.text = Std.string(entities.length);
-        camCoords.t.text = Std.string(Math.floor(timeUntilDeath));
+        // camCoords.cx.text = Std.string(Math.floor(camera.x));
+        // camCoords.cy.text = Std.string(Math.floor(camera.y));
+        // camCoords.e.text = Std.string(entities.length);
+        // camCoords.t.text = Std.string(Math.floor(timeUntilDeath));
         camCoords.p.text = Std.string(score);
         camCoords.m.text = Std.string(money);
 

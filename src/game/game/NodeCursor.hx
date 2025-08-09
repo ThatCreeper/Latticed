@@ -7,6 +7,7 @@ import h2d.Graphics;
 
 class NodeCursor extends MGEntity {
     var attacher: CursorAttacher;
+    public var delayFrames = 0;
 
     public function new(g, ?layer) {
         super(g, layer);
@@ -24,6 +25,14 @@ class NodeCursor extends MGEntity {
 
     override function update() {
         super.update();
+
+        if (game.gameOvered) return;
+        if (game.isPaused()) return;
+
+        if (delayFrames > 0) {
+            delayFrames--;
+            return;
+        }
 
         x = game.mouseX;
         y = game.mouseY;

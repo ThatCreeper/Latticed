@@ -1,5 +1,6 @@
 package game.story;
 
+import game.game.MusicManager;
 import hxd.snd.Channel;
 import hxd.Key;
 import h2d.Object;
@@ -8,7 +9,6 @@ import game.game.BaseMainGame;
 class World1 extends BaseMainGame {
     var phase = 0;
     var textBox: TextBox;
-    var music: Channel;
 
     public function new() {
         super();
@@ -23,8 +23,9 @@ class World1 extends BaseMainGame {
 "Use left click to
 extend a hypha", this, hudLayer);
 
-        music = hxd.Res.latticed.play(true, 0);
-        music.fadeTo(0.6);
+        // music = hxd.Res.latticed.play(true, 0);
+        // music.fadeTo(0.6);
+        MusicManager.set(hxd.Res.latticed);
     }
 
     override function update() {
@@ -131,13 +132,11 @@ crowded and unable to form");
             phase = 7;
             textBox.setText(
 "Have fun!");
-            music.fadeTo(0, 4);
+            MusicManager.fadeOut(4);
         }
     }
 
     override function dispose() {
         super.dispose();
-
-        music.stop();
     }
 }

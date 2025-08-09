@@ -24,7 +24,7 @@ camera-coords {
     color :#ffe2a5;
 }
 
-lose-u-i {
+lose-u-i,pause-u-i {
     padding: 20;
     padding-top: 2;
     background: #FF0000;
@@ -32,7 +32,7 @@ lose-u-i {
     layout: vertical;
 }
 
-lose-u-i .header {
+lose-u-i .header,pause-u-i .header {
     color: #FFFFFF;
     scale: 4;
     line-spacing: 1;
@@ -46,7 +46,7 @@ lose-u-i .score {
     scale: 2;
 }
 
-lose-u-i lose-button {
+lose-button {
     halign: middle;
     background: #FFFFFF;
     margin-top: 12;

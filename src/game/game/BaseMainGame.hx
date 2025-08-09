@@ -19,7 +19,7 @@ abstract class BaseMainGame extends Game {
     public var playSpace: PlaySpace;
 
     public var timeUntilDeath = 10.99;
-    public var deathTime = 11;
+    public var deathTime = 6;
     public var gameOvered = false;
 
     var lastMouseX = 0.0;
@@ -125,6 +125,9 @@ abstract class BaseMainGame extends Game {
         // if (Key.isPressed(Key.Q))
         //     playSpace.screenshot();
 
+        if (Key.isPressed(Key.ESCAPE) && !gameOvered && !isPaused())
+            new PauseScreen(this, hudLayer);
+
         placeDelay--;
     }
 
@@ -196,4 +199,8 @@ abstract class BaseMainGame extends Game {
 
     public function onNewNode() {}
     public function onFailedCrowdedNode() {}
+
+    public function isPaused() {
+        return instanceExists(e->e is PauseScreen);
+    }
 }

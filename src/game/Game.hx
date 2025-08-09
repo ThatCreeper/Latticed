@@ -111,4 +111,11 @@ class Game extends TimeAware {
             if (pred(e))
                 e.remove();
     }
+
+    public function instanceExists(pred:Entity<Dynamic>->Bool) {
+        for (e in entities)
+            if (pred(e))
+                return true;
+        return false;
+    }
 }

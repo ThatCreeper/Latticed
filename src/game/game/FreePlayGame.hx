@@ -5,13 +5,14 @@ class FreePlayGame extends BaseMainGame {
         super();
         deathTime = 1;
         addFreePlayUI();
-        hxd.Res.latticed.play(true, 0).fadeTo(0.6);
+        // hxd.Res.latticed.play(true, 0).fadeTo(0.6);
+        MusicManager.set(hxd.Res.latticed);
     }
 
     override function dispose() {
         super.dispose();
         
-        hxd.Res.latticed.stop();
+        // hxd.Res.latticed.stop();
     }
 
     // override function addScore(x:Float, y:Float, score:Int) {

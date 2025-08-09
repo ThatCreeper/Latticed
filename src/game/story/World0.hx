@@ -1,5 +1,7 @@
 package game.story;
 
+import game.game.MusicManager;
+import hxd.Key;
 import hxd.snd.Channel;
 
 class World0 extends Game {
@@ -50,12 +52,16 @@ which can use its hypha";
         typer.finalScrollLineStart = "which can use its ";
         typer.finalScrollLineWord = "hypha";
 
+        MusicManager.fadeOut(2);
         music = hxd.Res.latticed_intro.play();
         music.volume = 0.6;
     }
 
     override function update() {
         super.update();
+
+        if (Key.isReleased(Key.ESCAPE))
+            Main.setGame(new World1());
 
         time += deltaTime;
 

@@ -20,6 +20,18 @@ class M {
         return from + cast ((to - from) * x);
     }
 
+    public static function smoothStep(from: Float, to: Float, x: Float): Float {
+        x = clamp(x, 0, 1);
+        var y = x * x * (3.0 - 2.0 * x);
+        return lerp(from, to, y);
+    }
+
+    public static function smootherStep(from: Float, to: Float, x: Float): Float {
+        x = clamp(x, 0, 1);
+        var y = x * x * x * (x * (6.0 * x - 15.0) + 10.0);
+        return lerp(from, to, y);
+    }
+
     public static function rng(min: Float, max: Float) {
         return lerp(min, max, Math.random());
     }

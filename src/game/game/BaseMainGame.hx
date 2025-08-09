@@ -18,6 +18,7 @@ abstract class BaseMainGame extends Game {
     public var playSpace: PlaySpace;
 
     public var timeUntilDeath = 10.99;
+    public var deathTime = 11;
     public var gameOvered = false;
 
     var lastMouseX = 0.0;
@@ -103,12 +104,10 @@ abstract class BaseMainGame extends Game {
             if (money <= 0) {
                 timeUntilDeath -= deltaTime;
             } else {
-                timeUntilDeath = 10.99;
+                timeUntilDeath = deathTime - 0.01;
             }
             if (timeUntilDeath <= 0) {
-                gameOvered = true;
-                cursor.remove();
-                new LoseScreen(this, hudLayer);
+                die();
             }
         }
 
@@ -124,6 +123,12 @@ abstract class BaseMainGame extends Game {
 
         lastMouseX = mouseX;
         lastMouseY = mouseY;
+    }
+
+    function die() {
+        gameOvered = true;
+        cursor.remove();
+        new LoseScreen(this, hudLayer);
     }
 
     function updateGUI():Void {
@@ -178,4 +183,5 @@ abstract class BaseMainGame extends Game {
     public abstract function restart():Void;
 
     public function onNewNode() {}
+    public function onFailedCrowdedNode() {}
 }

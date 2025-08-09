@@ -104,6 +104,7 @@ class NodeCursor extends MGEntity {
 
         if (connections > 5) {
             connectionsToast();
+            game.onFailedCrowdedNode();
             return;
         }
 

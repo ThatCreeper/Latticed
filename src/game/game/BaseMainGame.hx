@@ -112,8 +112,8 @@ abstract class BaseMainGame extends Game {
             }
         }
 
-        if (Key.isPressed(Key.Q))
-            playSpace.screenshot();
+        // if (Key.isPressed(Key.Q))
+        //     playSpace.screenshot();
 
         placeDelay--;
     }

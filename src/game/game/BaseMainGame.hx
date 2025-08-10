@@ -192,13 +192,13 @@ abstract class BaseMainGame extends Game {
             return true;
         }
         money -= required;
-        new Toast(x, y, 3, '-$$$required', 0xfdcea8, this);
+        new Toast(x, y, 3, '-$required', 0xfdcea8, this);
         return false;
     }
 
     public function addMoney(x:Float, y:Float, money:Int) {
         this.money += money;
-        new Toast(x, y + 5, 3, '+$$${money}', 0xfdcea8, this, this.worldlyHudLayer);
+        new Toast(x, y + 5, 3, '+${money}', 0xfdcea8, this, this.worldlyHudLayer);
     }
 
     override function dispose() {

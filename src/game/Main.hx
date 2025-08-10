@@ -91,6 +91,7 @@ class Main extends hxd.App {
             }
 
             game.postUpdate();
+            style.sync(dt);
         } while(newGameThisFrame);
     }
 

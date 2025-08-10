@@ -85,3 +85,44 @@ lose-button text {
     scale: 2;
     text-align: center;
 }
+
+story-u-i {
+    layout: vertical;
+    content-align: middle;
+    vspacing: 10;
+}
+
+story-u-i flow {
+    hspacing: 10;
+    layout: horizontal;
+}
+
+story-button:hover {
+    background: url("button_hover.png");
+}
+story-button {
+    width: 100;
+    height: 100;
+    background: url("button.png");
+    content-align: middle;
+}
+
+story-button text#label {
+    align: left;
+    valign: middle;
+    scale: 2;
+    offset-y: -4;
+    text-align: center;
+}
+
+story-button text#number {
+    scale: 1;
+    text-align: left;
+    position: absolute;
+    x: 7;
+    y: 5;
+}
+
+story-u-i bitmap {
+    scale: 0.2;
+}

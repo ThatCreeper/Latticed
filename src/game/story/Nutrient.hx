@@ -28,7 +28,7 @@ class Nutrient extends Creature {
     override function harvest(spawnedHarvestNode:NodeEntity) {
         super.harvest(spawnedHarvestNode);
 
-        game.addMoney(x, y, 20);
+        game.addMoney(x, y - 20, 20);
         remove();
     }
 }

@@ -8,6 +8,8 @@ class World5 extends BaseMainGame {
         super();
 
         MusicManager.set(hxd.Res.latticed_rhythm);
+
+        new TextBox("Reach the bottom", this, hudLayer);
     }
 
     public function restart() {

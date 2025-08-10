@@ -1,5 +1,6 @@
 package game.story;
 
+import h2d.Bitmap;
 import game.game.BaseMainGame;
 import game.game.NodeEntity;
 import game.game.MusicManager;
@@ -24,11 +25,12 @@ class MurderBlock extends Entity<World5> {
         this.beat = b;
         this.beats = B;
 
-        var graphic = new Graphics(spr);
-        graphic.beginFill(0xB90600);
-        graphic.drawRect(0, 0, w, h);
-        graphic.endFill();
-        graphic.alpha = 1;
+        // var graphic = new Graphics(spr);
+        // graphic.beginFill(0xB90600);
+        // graphic.drawRect(0, 0, w, h);
+        // graphic.endFill();
+        // graphic.alpha = 1;
+        var graphic = new Bitmap(hxd.Res.deathtile.toTile(), spr);
     }
 
     override function update() {
@@ -45,7 +47,7 @@ class MurderBlock extends Entity<World5> {
         } else {
             visibled = false;
         }
-        spr.alpha = 1 - (1 - alpha) * (1 - alpha);
+        spr.alpha = (1 - (1 - alpha) * (1 - alpha));
     }
 
     function doDeath() {
@@ -60,6 +62,7 @@ class MurderBlock extends Entity<World5> {
                 return;
             }
             e.remove();
+            hxd.Res.latticed_nomoney.play();
         }
     }
 

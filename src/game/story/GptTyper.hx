@@ -45,7 +45,7 @@ class GptTyper extends Entity<World0> {
             text.text = fullScrollText;
             var finalTargetY = (scrhei / 2) - text.textHeight * 2;
             text.text = finalScrollLineStart;
-            finalTargetY -= text.textHeight;
+            finalTargetY += text.textHeight;
             y = M.smoothStep(0, finalTargetY, scrollTime / scrollDur);
         }
         if (moving && finalScrollLineStart != null) {

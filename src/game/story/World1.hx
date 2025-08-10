@@ -48,7 +48,9 @@ extend a hypha", this, hudLayer);
         }
         if (phase == 2 &&
             (Key.isReleased(Key.QWERTY_MINUS) ||
-             Key.isReleased(Key.QWERTY_EQUALS))) {
+             Key.isReleased(Key.QWERTY_EQUALS) ||
+             Key.isReleased(61) ||
+             Key.isReleased(173))) {
             phase = 3;
             textBox.setText(
 "You can also use

@@ -101,11 +101,13 @@ abstract class BaseMainGame extends Game {
         }
 
         if (Key.isPressed(Key.QWERTY_EQUALS) ||
-            Key.isPressed(Key.MOUSE_WHEEL_UP)) {
+            Key.isPressed(Key.MOUSE_WHEEL_UP) ||
+            Key.isPressed(61) /* firefox */) {
             camera.sscale *= 2;
         }
         if (Key.isPressed(Key.QWERTY_MINUS) ||
-            Key.isPressed(Key.MOUSE_WHEEL_DOWN)) {
+            Key.isPressed(Key.MOUSE_WHEEL_DOWN) ||
+            Key.isPressed(173) /* firefox */) {
             camera.sscale /= 2;
         }
 

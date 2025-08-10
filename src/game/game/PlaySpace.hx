@@ -1,5 +1,6 @@
 package game.game;
 
+import hxd.Pixels;
 import h3d.mat.Data.TextureFlags;
 import hxd.File;
 import h3d.mat.Texture;
@@ -87,7 +88,14 @@ class PlaySpace extends MGEntity {
         game.hudLayer.visible = true;
         game.worldlyHudLayer.visible = true;
 
-        var pixels = target.capturePixels();
+        var pixels: Pixels;
+        try {
+            pixels = target.capturePixels();
+        } catch (e) {
+            new Toast(scrwid / 2, 40, 0, "Something went wrong!", 0xFFFF00, game, game.hudLayer);
+            trace(e.details());
+            return;
+        }
 
         target.dispose();
         #if hl

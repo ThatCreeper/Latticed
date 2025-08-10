@@ -27,7 +27,7 @@ class World4 extends BaseMainGame {
         new SliderComputer(625, 354, movingWall, 650, 480, this);
         new EndPoint(680, 520, this);
 
-        new TextBox("Exit", this, hudLayer);
+        new TextBox("Leave the room", this, hudLayer);
 
         money = 40;
     }

@@ -1,5 +1,7 @@
 package game.story;
 
+import h2d.Tile;
+import h2d.Bitmap;
 import game.game.BaseMainGame;
 import h2d.Graphics;
 
@@ -19,11 +21,15 @@ class StoryBlock extends Entity<BaseMainGame> {
         this.targetX = x;
         this.targetY = y;
 
-        var graphic = new Graphics(spr);
-        graphic.beginFill(0xFF9BFA);
-        graphic.drawRect(0, 0, w, h);
-        graphic.endFill();
-        graphic.alpha = 0.5;
+        // var graphic = new Graphics(spr);
+        // graphic.beginFill(0xFF9BFA);
+        // graphic.drawRect(0, 0, w, h);
+        // graphic.endFill();
+        // graphic.alpha = 0.5;
+        var tile = hxd.Res.storyblock.toTile();
+        tile.setSize(w, h);
+        var bitmap = new Bitmap(tile, spr);
+        bitmap.tileWrap = true;
     }
 
     override function update() {

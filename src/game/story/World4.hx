@@ -1,5 +1,6 @@
 package game.story;
 
+import h2d.Bitmap;
 import game.game.MusicManager;
 import game.game.BaseMainGame;
 
@@ -12,9 +13,12 @@ class World4 extends BaseMainGame {
         MusicManager.set(hxd.Res.latticed);
 
         selected.x = 420;
-        selected.y = 478;
+        selected.y = 478 + 10;
         camera.x = selected.x;
         camera.y = selected.y;
+
+        new Bitmap(hxd.Res.world4bg.toTile(), bgLayer);
+
         new StoryBlock(504, 444, 126, 73, this);
         new StoryBlock(630, 435, 107, 82, this);
         new StoryBlock(715, 517, 22, 37, this);

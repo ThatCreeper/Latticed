@@ -8,6 +8,7 @@ import game.game.Creature;
 class EndPoint extends Creature {
     var bitmap:Bitmap;
 	public var minScore:Int = 0;
+    var won = false;
 
     public function new(x, y, ?g, ?l) {
         super(x, y, g, l);
@@ -39,8 +40,11 @@ class EndPoint extends Creature {
     public function recalculate() {
         if (harvester == null)
             return;
+        if (won)
+            return;
         if (game.score < minScore)
             return;
         game.win();
+        won = true;
     }
 }

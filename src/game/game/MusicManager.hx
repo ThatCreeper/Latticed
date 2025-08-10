@@ -24,4 +24,9 @@ class MusicManager {
         cChannel.fadeTo(0, dur, ()->cChannel.stop());
         current = null;
     }
+
+    public static function getBeat(bpm, beats) {
+        var beat = current.position * bpm / 60;
+        return 1 + (Math.floor(beat) % beats);
+    }
 }

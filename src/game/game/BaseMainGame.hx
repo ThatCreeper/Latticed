@@ -154,7 +154,8 @@ abstract class BaseMainGame extends Game {
         lastMouseY = mouseY;
     }
 
-    function die() {
+    public function die() {
+        if (gameOvered) return;
         gameOvered = true;
         cursor.remove();
         new LoseScreen(false, this, hudLayer);

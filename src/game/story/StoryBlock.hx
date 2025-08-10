@@ -1,9 +1,9 @@
 package game.story;
 
+import game.game.BaseMainGame;
 import h2d.Graphics;
-import game.game.Creature;
 
-class StoryBlock extends Creature {
+class StoryBlock extends Entity<BaseMainGame> {
     var w: Float;
     var h: Float;
 
@@ -11,7 +11,9 @@ class StoryBlock extends Creature {
     public var targetY: Float;
     
     public function new(x, y, w, h, ?g, ?l) {
-        super(x, y, g, l);
+        super(g, l);
+        this.x = x;
+        this.y = y;
         this.w = w;
         this.h = h;
         this.targetX = x;

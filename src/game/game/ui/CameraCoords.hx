@@ -14,7 +14,9 @@ class CameraCoords extends h2d.Flow implements h2d.domkit.Object {
             //     <text public id="t" text={'10'}/>
             // </flow>
             <flow class="infobox">
+                <text public class="pointlabel" text={'Score'}/>
                 <text public id="p" text={'0'}/>
+                <text public class="moneylabel" text={'Nutrients'}/>
                 <text public id="m" text={'100'}/>
             </flow>
         </camera-coords>;

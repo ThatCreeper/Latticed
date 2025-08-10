@@ -1,5 +1,6 @@
 package game.game;
 
+import h2d.Text;
 import h2d.Tile;
 import haxe.exceptions.NotImplementedException;
 import h2d.Interactive;
@@ -27,6 +28,7 @@ abstract class BaseMainGame extends Game {
 	public var placeDelay = 0;
 
     var deathOverlay:Bitmap;
+    var deathText:Text;
 
     public function new() {
         super();
@@ -48,6 +50,9 @@ abstract class BaseMainGame extends Game {
         deathOverlay = new Bitmap(Tile.fromColor(0xFF0000, 1, 1), hudLayer);
         deathOverlay.setScale(10000);
         deathOverlay.alpha = 0;
+        deathText = new Text(hxd.res.DefaultFont.get(), hudLayer);
+        deathText.textAlign = Center;
+        deathText.setScale(3);
 
         camCoords = new CameraCoords(0, 0, hudLayer);
         // #if !debug
@@ -68,6 +73,7 @@ abstract class BaseMainGame extends Game {
         finishButton = new Interactive(90, 56, hudLayer); // FINISH BUTTON HARDCODED
         new Bitmap(hxd.Res.finish.toTile(), finishButton);
         finishButton.onClick = finish;
+        camCoords.visible = false;
     }
 
     function finish(e:hxd.Event) {
@@ -121,6 +127,15 @@ abstract class BaseMainGame extends Game {
                 0
             else
                 0.5, deltaTime / deathTime);
+        if (timeUntilDeath > deathTime - 0.1) {
+            deathText.visible = false;
+        } else {
+            deathText.visible = true;
+            deathText.text = '${Math.max(0, Math.floor(timeUntilDeath))}';
+            deathText.x = scrwid / 2;
+            deathText.y = (scrhei - deathText.textHeight * 3) / 2;
+            deathText.alpha = deathOverlay.alpha;
+        }
 
         // if (Key.isPressed(Key.Q))
         //     playSpace.screenshot();
@@ -143,12 +158,14 @@ abstract class BaseMainGame extends Game {
         gameOvered = true;
         cursor.remove();
         new LoseScreen(false, this, hudLayer);
+        hxd.Res.latticed_lose.play();
     }
 
     public function win() {
         gameOvered = true;
         cursor.remove();
         new LoseScreen(true, this, hudLayer);
+        hxd.Res.latticed_win.play();
     }
 
     function updateGUI():Void {
@@ -175,13 +192,13 @@ abstract class BaseMainGame extends Game {
             return true;
         }
         money -= required;
-        new Toast(x, y, 3, '-$$$required', 0xFF0000, this);
+        new Toast(x, y, 3, '-$$$required', 0xfdcea8, this);
         return false;
     }
 
     public function addMoney(x:Float, y:Float, money:Int) {
         this.money += money;
-        new Toast(x, y + 5, 3, '+$$${money}', 0x00FF00, this, this.worldlyHudLayer);
+        new Toast(x, y + 5, 3, '+$$${money}', 0xfdcea8, this, this.worldlyHudLayer);
     }
 
     override function dispose() {

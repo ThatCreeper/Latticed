@@ -1,13 +1,21 @@
 camera-coords {
-    x: 5px;
-    y: 5px;
+    /* x: 5px;
+    y: 5px; */
     layout: vertical;
+    /* background: gray; */
+    background: url("score.png");
+    width: 110;
+    height: 101;
 }
 
 .infobox {
     layout: vertical;
-    background: gray;
     margin-bottom: 5;
+    margin-left: 10;
+    margin-top: 7;
+    margin-right: 10;
+    /* background: #000000;
+    background-alpha: 0.5; */
 }
 
 .infobox text {
@@ -16,12 +24,30 @@ camera-coords {
     text-shadow: 0 1 black;
 }
 
+text.pointlabel {
+    color: #00FF00;
+    margin-bottom: 0;
+}
+
 #p {
     color: #00FF00;
+    scale: 2;
+    offset-y: -4;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+text.moneylabel {
+    color: #fdcea8;
+    margin-bottom: 0;
+    margin-top: 1;
 }
 
 #m {
-    color :#ffe2a5;
+    color :#fdcea8;
+    scale: 2;
+    offset-y: -4;
+    margin-top: 0;
 }
 
 lose-u-i,pause-u-i {

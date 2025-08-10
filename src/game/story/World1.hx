@@ -26,6 +26,10 @@ extend a hypha", this, hudLayer);
         // music = hxd.Res.latticed.play(true, 0);
         // music.fadeTo(0.6);
         MusicManager.set(hxd.Res.latticed);
+
+        money = 100;
+        
+        camCoords.visible = false;
     }
 
     override function update() {
@@ -60,7 +64,7 @@ manipulate the camera");
 a limited number of nutrients.
 If you run out, you lose");
             money = 20;
-            // TODO: Show money UI
+            camCoords.visible = true;
         }
         if (phase == 8 &&
             hudLayer.alpha <= 0) {
@@ -131,9 +135,9 @@ crowded and unable to form");
         if (phase == 6) {
             phase = 7;
             textBox.setText(
-"Use escape to
-open the pause screen
-and exit to the menu");
+"Use escape to open
+the pause screen and
+exit to the menu");
             // MusicManager.fadeOut(4);
         }
     }

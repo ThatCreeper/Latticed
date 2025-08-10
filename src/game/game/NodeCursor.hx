@@ -110,6 +110,7 @@ class NodeCursor extends MGEntity {
         if (game.cashCheckToast(5, x, y + 5, "You need 5 nutrients\nto make a node!")) return;
         creature.harvest(placeNewNodeImpl());
         game.onNewNode();
+        hxd.Res.latticed_place.play();
     }
 
     function placeNewNode() {

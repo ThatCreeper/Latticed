@@ -6,17 +6,29 @@ import game.game.Creature;
 class StoryBlock extends Creature {
     var w: Float;
     var h: Float;
+
+    public var targetX: Float;
+    public var targetY: Float;
     
     public function new(x, y, w, h, ?g, ?l) {
         super(x, y, g, l);
         this.w = w;
         this.h = h;
+        this.targetX = x;
+        this.targetY = y;
 
         var graphic = new Graphics(spr);
         graphic.beginFill(0xFF9BFA);
         graphic.drawRect(0, 0, w, h);
         graphic.endFill();
         graphic.alpha = 0.5;
+    }
+
+    override function update() {
+        super.update();
+
+        x = M.lerpC(x, targetX, deltaTime);
+        y = M.lerpC(y, targetY, deltaTime);
     }
 
     public function getCenterX():Float {

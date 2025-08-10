@@ -6,7 +6,7 @@ class Toast extends MGEntity {
     public var vy: Float;
 
     public function new(x, y, vy, text, color, ?g, ?l) {
-        super(g, l == g.hudLayer ? l : (l ?? (g ?? Main.INST.game).worldlyHudLayer));
+        super(g, (g != null && l == g.hudLayer) ? l : (l ?? (g ?? Main.INST.game).worldlyHudLayer));
 
         var txt = new Text(hxd.res.DefaultFont.get(), spr);
         txt.textColor = color;

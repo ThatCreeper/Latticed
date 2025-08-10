@@ -181,7 +181,7 @@ abstract class BaseMainGame extends Game {
 
     public function addMoney(x:Float, y:Float, money:Int) {
         this.money += money;
-        new Toast(x, y + 5, 3, '+${money}', 0x00FF00, this, this.worldlyHudLayer);
+        new Toast(x, y + 5, 3, '+$$${money}', 0x00FF00, this, this.worldlyHudLayer);
     }
 
     override function dispose() {

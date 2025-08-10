@@ -7,6 +7,7 @@ import game.game.Creature;
 
 class EndPoint extends Creature {
     var bitmap:Bitmap;
+	public var minScore:Int = 0;
 
     public function new(x, y, ?g, ?l) {
         super(x, y, g, l);
@@ -32,6 +33,14 @@ class EndPoint extends Creature {
         super.harvest(spawnedHarvestNode);
         
         bitmap.tile = hxd.Res.checkpoint_captured.toTile();
+        recalculate();
+    }
+
+    public function recalculate() {
+        if (harvester == null)
+            return;
+        if (game.score < minScore)
+            return;
         game.win();
     }
 }

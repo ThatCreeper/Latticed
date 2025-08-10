@@ -1,5 +1,6 @@
 package game.story;
 
+import hxd.Key;
 import game.game.MusicManager;
 import game.game.BaseMainGame;
 
@@ -23,13 +24,32 @@ class World3 extends BaseMainGame {
         new StoryBlock(460, 722, 20, 200, this);
         new StoryBlock(280, 902, 180, 20, this);
         new StoryBlock(160, 679, 20, 201, this);
-        new EndPoint(402, 752, this);
-
-        new TextBox("Get at least XXX score", this, hudLayer);
+        new Nutrient(186, 957, this);
+        new Nutrient(200, 706, this);
+        new Nutrient(289, 891, this);
+        new Nutrient(255, 928, this);
+        new Nutrient(225, 894, this);
+        new Nutrient(221, 756, this);
+        new Nutrient(340, 701, this);
+        new Nutrient(359, 836, this);
+        var end = new EndPoint(402, 752, this);
+        end.minScore = 950;
+        
+        new TextBox(
+"Grow through the vents
+(Minimum score 950)", this, hudLayer);
+        money = 20;
     }
 
     public function restart() {
         Main.setGame(new World3());
+    }
+
+    override function update() {
+        super.update();
+
+        if (Key.isPressed(Key.H))
+            trace(mouseX, mouseY);
     }
 
     override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
@@ -41,5 +61,14 @@ class World3 extends BaseMainGame {
                 return false;
         }
         return super.isValidNodeSpot(x, y, sx, sy);
+    }
+
+    override function onNewNode() {
+        super.onNewNode();
+        for (e in entities) {
+            if (e is EndPoint) {
+                cast (e, EndPoint).recalculate();
+            }
+        }
     }
 }

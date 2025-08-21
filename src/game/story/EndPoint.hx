@@ -47,4 +47,12 @@ class EndPoint extends Creature {
         game.win();
         won = true;
     }
+
+    override function serializableMap():Bool {
+        return true;
+    }
+
+    override function serializeMap():String {
+        return '${x}, ${y}';
+    }
 }

@@ -58,4 +58,12 @@ class StoryBlock extends Entity<BaseMainGame> {
         }
         return false;
     }
+
+    override function serializableMap():Bool {
+        return true;
+    }
+
+    override function serializeMap():String {
+        return '${x}, ${y}, ${w}, ${h}';
+    }
 }

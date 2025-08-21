@@ -94,4 +94,12 @@ class Entity<T: Game = Game> extends TimeAware {
     public function attach(e) {
         attached.add(e);
     }
+
+    public function serializableMap() {
+        return false;
+    }
+
+    public function serializeMap() {
+        return "";
+    }
 }

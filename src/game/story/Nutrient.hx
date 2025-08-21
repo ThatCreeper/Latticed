@@ -31,4 +31,12 @@ class Nutrient extends Creature {
         game.addMoney(x, y - 20, 20);
         remove();
     }
+
+    override function serializableMap():Bool {
+        return true;
+    }
+
+    override function serializeMap():String {
+        return '${x}, ${y}';
+    }
 }

@@ -85,4 +85,12 @@ class MurderBlock extends Entity<World5> {
         }
         return false;
     }
+
+    override function serializableMap():Bool {
+        return true;
+    }
+
+    override function serializeMap():String {
+        return '$x, $y, $w, $h, $beat, $beats';
+    }
 }

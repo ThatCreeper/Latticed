@@ -5,8 +5,6 @@ import game.game.MusicManager;
 import game.game.BaseMainGame;
 
 class World5 extends MappableStoryGame {
-    public var lastPlaced: NodeEntity;
-
     public function new() {
         super();
 
@@ -77,7 +75,7 @@ to scroll the camera)", this, hudLayer);
         new StoryBlock(466, 556, 20, 28, this);
         new StoryBlock(466, 584, 164, 20, this);
         new StoryBlock(610, 604, 20, 432, this);
-        new StoryBlock(630, 1016, 68,  20, this);
+        new StoryBlock(630, 1016, 68, 20, this);
         new StoryBlock(678, 516, 20, 500, this);
         new StoryBlock(650, 516, 28, 20, this);
         new StoryBlock(630, 440, 20, 96, this);
@@ -115,10 +113,5 @@ to scroll the camera)", this, hudLayer);
                 return false;
         }
         return super.isValidNodeSpot(x, y, sx, sy);
-    }
-
-    override function onNewNode() {
-        super.onNewNode();
-        lastPlaced = selected;
     }
 }

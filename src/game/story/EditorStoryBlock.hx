@@ -4,7 +4,6 @@ import h3d.Vector;
 import hxd.Key;
 
 class EditorStoryBlock extends StoryBlock {
-    var side = 0;
     var grabX = 0.0;
     var grabY = 0.0;
 
@@ -26,6 +25,7 @@ class EditorStoryBlock extends StoryBlock {
                 h = M.toNearestMultipleOf(Math.max(1, game.mouseY - y), 16);
             else
                 h = Math.floor(Math.max(1, game.mouseY - y));
+            game.score = Math.floor(h);
             resizeTile();
         }
         if (g.selectedEnt == this && Key.isDown(Key.MOUSE_RIGHT)) {
@@ -33,6 +33,7 @@ class EditorStoryBlock extends StoryBlock {
                 w = M.toNearestMultipleOf(Math.max(1, game.mouseX - x), 16);
             else
                 w = Math.floor(Math.max(1, game.mouseX - x));
+            game.score = Math.floor(w);
             resizeTile();
         }
         if (g.selectedEnt == this && Key.isDown(Key.MOUSE_MIDDLE)) {
@@ -40,6 +41,8 @@ class EditorStoryBlock extends StoryBlock {
             y = Math.floor(game.mouseY - grabY);
             targetX = x;
             targetY = y;
+            game.score = Math.floor(x);
+            game.money = Math.floor(y);
         }
         if (g.selectedEnt != this && (Key.isPressed(Key.MOUSE_LEFT)
                                    || Key.isPressed(Key.MOUSE_MIDDLE)

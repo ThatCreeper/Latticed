@@ -13,6 +13,7 @@ import game.game.ui.CameraCoords;
 // TODO: Free play mode
 abstract class BaseMainGame extends Game {
     public var selected: NodeEntity;
+    public var lastPlaced: NodeEntity;
     public var cursor: NodeCursor;
     var camCoords: CameraCoords;
     public var score = 0;
@@ -47,6 +48,7 @@ abstract class BaseMainGame extends Game {
         // new SpiderStrider(0, 0, this);
 
         selected = new NodeEntity(this);
+        lastPlaced = selected;
 
         cursor = new NodeCursor(this, worldlyHudLayer);
         deathOverlay = new Bitmap(Tile.fromColor(0xFF0000, 1, 1), hudLayer);
@@ -227,7 +229,9 @@ abstract class BaseMainGame extends Game {
     
     public abstract function restart():Void;
 
-    public function onNewNode() {}
+    public function onNewNode() {
+        lastPlaced = selected;
+    }
     public function onFailedCrowdedNode() {}
 
     public function isPaused() {

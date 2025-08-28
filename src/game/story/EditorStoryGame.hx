@@ -20,6 +20,9 @@ class EditorStoryGame extends MappableStoryGame {
 
     override function update() {
         lockedCamera = selectedEnt != null;
+        score = 0;
+        money = 10000;
+
         super.update();
 
         if (Key.isPressed(Key.B)) {

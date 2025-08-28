@@ -22,6 +22,8 @@ class EditorEndPoint extends EndPoint {
         if (g.selectedEnt == this && Key.isDown(Key.MOUSE_MIDDLE)) {
             x = Math.floor(game.mouseX - grabX);
             y = Math.floor(game.mouseY - grabY);
+            game.score = Math.floor(x);
+            game.money = Math.floor(y);
         }
         if (g.selectedEnt != this && (Key.isPressed(Key.MOUSE_MIDDLE)) && overlapsXY(game.mouseX, game.mouseY)) {
             g.selectedEnt = this;

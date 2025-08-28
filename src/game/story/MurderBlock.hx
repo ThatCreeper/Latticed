@@ -6,7 +6,7 @@ import game.game.NodeEntity;
 import game.game.MusicManager;
 import h2d.Graphics;
 
-class MurderBlock extends Entity<World5> {
+class MurderBlock extends Entity<BaseMainGame> {
     var w: Float;
     var h: Float;
 
@@ -15,6 +15,8 @@ class MurderBlock extends Entity<World5> {
 
     var visibled = false;
     var alpha = 0.0;
+
+    var graphic: Bitmap;
     
     public function new(x, y, w, h, b, B, ?g, ?l) {
         super(g, l);
@@ -30,7 +32,7 @@ class MurderBlock extends Entity<World5> {
         // graphic.drawRect(0, 0, w, h);
         // graphic.endFill();
         // graphic.alpha = 1;
-        var graphic = new Bitmap(hxd.Res.deathtile.toTile(), spr);
+        graphic = new Bitmap(hxd.Res.deathtile.toTile(), spr);
     }
 
     override function update() {
@@ -51,6 +53,7 @@ class MurderBlock extends Entity<World5> {
     }
 
     function doDeath() {
+        if (game.isPaused()) return;
         for (e in game.entities) {
             if (!(e is NodeEntity))
                 continue;
@@ -92,5 +95,9 @@ class MurderBlock extends Entity<World5> {
 
     override function serializeMap():String {
         return '$x, $y, $w, $h, $beat, $beats';
+    }
+
+    override function spawnEditorClone(game:EditorStoryGame) {
+        new EditorMurderBlock(x, y, w, h, beat, beats, game);
     }
 }

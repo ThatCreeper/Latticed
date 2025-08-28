@@ -4,7 +4,7 @@ import game.game.NodeEntity;
 import game.game.MusicManager;
 import game.game.BaseMainGame;
 
-class World5 extends BaseMainGame {
+class World5 extends MappableStoryGame {
     public var lastPlaced: NodeEntity;
 
     public function new() {
@@ -12,17 +12,26 @@ class World5 extends BaseMainGame {
 
         MusicManager.set(hxd.Res.latticed_rhythm);
 
-        selected.x = camera.x = 365;
-        selected.y = camera.y = 87;
+        spawnMap();
         lastPlaced = selected;
 
+        money = 50;
+
+        new TextBox(
+"Reach the bottom
+(Click close to the edge
+to scroll the camera)", this, hudLayer);
+    }
+
+    function spawnMap() {
+        selected.x = camera.x = 365;
+        selected.y = camera.y = 87;
         new MurderBlock(390,  64, 48, 48, 1, 8, this);
         new MurderBlock(438,  64, 48, 48, 2, 8, this);
         new MurderBlock(486,  64, 48, 48, 3, 8, this);
         new MurderBlock(486, 132, 48, 48, 5, 8, this);
         new MurderBlock(438, 132, 48, 48, 6, 8, this);
         new MurderBlock(390, 132, 48, 48, 7, 8, this);
-
         new MurderBlock(342, 200, 48, 48, 1, 4, this);
         new MurderBlock(390, 200, 48, 48, 3, 4, this);
         new MurderBlock(438, 200, 48, 48, 1, 4, this);
@@ -38,7 +47,6 @@ class World5 extends BaseMainGame {
         new MurderBlock(438, 296, 48, 48, 3, 4, this);
         new MurderBlock(486, 296, 48, 48, 2, 2, this);
         new MurderBlock(534, 296, 48, 48, 1, 4, this);
-
         new MurderBlock(390, 392, 48, 48, 1, 4, this);
         new MurderBlock(438, 392, 48, 48, 2, 4, this);
         new MurderBlock(486, 392, 48, 48, 3, 4, this);
@@ -53,12 +61,10 @@ class World5 extends BaseMainGame {
         new MurderBlock(582, 488, 48, 48, 1, 4, this);
         new MurderBlock(582, 440, 48, 48, 2, 4, this);
         new MurderBlock(534, 440, 48, 48, 3, 4, this);
-
         new MurderBlock(630, 632, 48, 48, 1, 8, this);
         new MurderBlock(630, 728, 48, 48, 3, 8, this);
         new MurderBlock(630, 824, 48, 48, 5, 8, this);
         new MurderBlock(630, 920, 48, 48, 7, 8, this);
-
         new StoryBlock(322, 44,   260, 20,  this);
         new StoryBlock(342, 112,  192, 20,  this);
         new StoryBlock(322, 64,   20,  68,  this);
@@ -79,7 +85,6 @@ class World5 extends BaseMainGame {
         new StoryBlock(534, 392,  48,  48,  this);
         new StoryBlock(438, 440,  48,  48,  this);
         new StoryBlock(534, 488,  48,  48,  this);
-
         new Nutrient(555, 94,  this);
         new Nutrient(567, 112, this);
         new Nutrient(552, 145, this);
@@ -94,15 +99,7 @@ class World5 extends BaseMainGame {
         new Nutrient(655, 704, this);
         new Nutrient(654, 800, this);
         new Nutrient(656, 893, this);
-
         new EndPoint(638, 976, this);
-
-        money = 50;
-
-        new TextBox(
-"Reach the bottom
-(Click close to the edge
-to scroll the camera)", this, hudLayer);
     }
 
     public function restart() {

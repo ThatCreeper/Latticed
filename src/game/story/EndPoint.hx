@@ -55,4 +55,9 @@ class EndPoint extends Creature {
     override function serializeMap():String {
         return '${x}, ${y}';
     }
+
+    override function serializeMapPostfix():String {
+        if (minScore == 0) return "";
+        return '.minScore = ${minScore}';
+    }
 }

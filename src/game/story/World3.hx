@@ -4,16 +4,23 @@ import hxd.Key;
 import game.game.MusicManager;
 import game.game.BaseMainGame;
 
-class World3 extends BaseMainGame {
+class World3 extends MappableStoryGame {
     public function new() {
         super();
 
         MusicManager.set(hxd.Res.latticed);
+        
+        spawnMap();
 
-        selected.x = 39;
-        selected.y = 937;
-        camera.x = selected.x;
-        camera.y = selected.y;
+        new TextBox(
+"Grow through the vents
+(Minimum score 950)", this, hudLayer);
+        money = 20;
+    }
+
+    function spawnMap() {
+        selected.x = camera.x = 39;
+        selected.y = camera.y = 937;
         new StoryBlock(0, 900, 20, 80, this);
         new StoryBlock(0, 980, 260, 20, this);
         new StoryBlock(0, 880, 180, 20, this);
@@ -32,13 +39,7 @@ class World3 extends BaseMainGame {
         new Nutrient(221, 756, this);
         new Nutrient(340, 701, this);
         new Nutrient(359, 836, this);
-        var end = new EndPoint(402, 752, this);
-        end.minScore = 950;
-        
-        new TextBox(
-"Grow through the vents
-(Minimum score 950)", this, hudLayer);
-        money = 20;
+        new EndPoint(402, 752, this).minScore = 950;
     }
 
     public function restart() {

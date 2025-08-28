@@ -102,4 +102,8 @@ class Entity<T: Game = Game> extends TimeAware {
     public function serializeMap() {
         return "";
     }
+
+    public function serializeMapPostfix() {
+        return "";
+    }
 }

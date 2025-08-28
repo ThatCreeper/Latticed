@@ -1,5 +1,6 @@
 package game;
 
+import game.story.EditorStoryGame;
 import h2d.Object;
 
 class Entity<T: Game = Game> extends TimeAware {
@@ -99,11 +100,19 @@ class Entity<T: Game = Game> extends TimeAware {
         return false;
     }
 
+    public function serializeMapClassName() {
+        return Type.getClassName(Type.getClass(this));
+    }
+
     public function serializeMap() {
         return "";
     }
 
     public function serializeMapPostfix() {
         return "";
+    }
+
+    public function spawnEditorClone(game: EditorStoryGame) {
+
     }
 }

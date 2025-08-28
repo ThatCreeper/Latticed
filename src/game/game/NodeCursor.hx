@@ -6,7 +6,7 @@ import hxd.Key;
 import h2d.Graphics;
 
 class NodeCursor extends MGEntity {
-    var attacher: CursorAttacher;
+    public var attacher: CursorAttacher;
     public var delayFrames = 0;
 
     public function new(g, ?layer) {

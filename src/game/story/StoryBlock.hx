@@ -11,6 +11,8 @@ class StoryBlock extends Entity<BaseMainGame> {
 
     public var targetX: Float;
     public var targetY: Float;
+
+    var bitmap: Bitmap;
     
     public function new(x, y, w, h, ?g, ?l) {
         super(g, l);
@@ -28,15 +30,15 @@ class StoryBlock extends Entity<BaseMainGame> {
         // graphic.alpha = 0.5;
         var tile = hxd.Res.storyblock.toTile();
         tile.setSize(w, h);
-        var bitmap = new Bitmap(tile, spr);
+        bitmap = new Bitmap(tile, spr);
         bitmap.tileWrap = true;
     }
 
     override function update() {
         super.update();
 
-        x = M.lerpC(x, targetX, deltaTime);
-        y = M.lerpC(y, targetY, deltaTime);
+        x = M.lerpCR(x, targetX, deltaTime);
+        y = M.lerpCR(y, targetY, deltaTime);
     }
 
     public function getCenterX():Float {
@@ -65,5 +67,9 @@ class StoryBlock extends Entity<BaseMainGame> {
 
     override function serializeMap():String {
         return '${x}, ${y}, ${w}, ${h}';
+    }
+
+    override function spawnEditorClone(game:EditorStoryGame) {
+        new EditorStoryBlock(x, y, w, h, game);
     }
 }

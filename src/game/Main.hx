@@ -1,5 +1,6 @@
 package game;
 
+import hxd.Key;
 import h2d.domkit.Style;
 import hxd.Cursor;
 import hxd.Pad;
@@ -92,6 +93,8 @@ class Main extends hxd.App {
 
             game.postUpdate();
             style.sync(dt);
+            if (newGameThisFrame)
+                hxd.Timer.frameCount++; // Prevent keyboard input loops. Might mess up some other stuff
         } while(newGameThisFrame);
     }
 

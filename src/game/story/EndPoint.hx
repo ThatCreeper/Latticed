@@ -60,4 +60,8 @@ class EndPoint extends Creature {
         if (minScore == 0) return "";
         return '.minScore = ${minScore}';
     }
+
+    override function spawnEditorClone(game:EditorStoryGame) {
+        new EditorEndPoint(x, y, minScore, game);
+    }
 }

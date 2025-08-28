@@ -5,9 +5,11 @@ import h2d.Graphics;
 import game.game.Creature;
 
 class Nutrient extends Creature {
+    var graphics: Graphics;
+
     public function new(x, y, ?g, ?l) {
         super(x, y, g, l);
-        var graphics = new Graphics(spr);
+        graphics = new Graphics(spr);
         graphics.beginFill(0x00FF00);
         graphics.drawCircle(0, 0, 4);
         graphics.endFill();
@@ -38,5 +40,9 @@ class Nutrient extends Creature {
 
     override function serializeMap():String {
         return '${x}, ${y}';
+    }
+
+    override function spawnEditorClone(game:EditorStoryGame) {
+        new EditorNutrient(x, y, game);
     }
 }

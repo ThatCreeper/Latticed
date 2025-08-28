@@ -30,6 +30,8 @@ abstract class BaseMainGame extends Game {
     var deathOverlay:Bitmap;
     var deathText:Text;
 
+    public var lockedCamera = false;
+
     public function new() {
         super();
         // TODO: This is just debug
@@ -84,20 +86,22 @@ abstract class BaseMainGame extends Game {
     override function update() {
         super.update();
 
-        if (Key.isDown(Key.LEFT))
-            camera.sx -= 3 * tmod;
-        if (Key.isDown(Key.RIGHT))
-            camera.sx += 3 * tmod;
-        if (Key.isDown(Key.UP))
-            camera.sy -= 3 * tmod;
-        if (Key.isDown(Key.DOWN))
-            camera.sy += 3 * tmod;
+        if (!lockedCamera) {
+            if (Key.isDown(Key.LEFT))
+                camera.sx -= 3 * tmod;
+            if (Key.isDown(Key.RIGHT))
+                camera.sx += 3 * tmod;
+            if (Key.isDown(Key.UP))
+                camera.sy -= 3 * tmod;
+            if (Key.isDown(Key.DOWN))
+                camera.sy += 3 * tmod;
 
-        if (Key.isDown(Key.MOUSE_RIGHT) &&
-            (mouseX != lastMouseX ||
-             mouseY != lastMouseY)) {
-            camera.x -= mouseX - lastMouseX;
-            camera.y -= mouseY - lastMouseY;
+            if (Key.isDown(Key.MOUSE_RIGHT) &&
+                (mouseX != lastMouseX ||
+                mouseY != lastMouseY)) {
+                camera.x -= mouseX - lastMouseX;
+                camera.y -= mouseY - lastMouseY;
+            }
         }
 
         if (Key.isPressed(Key.QWERTY_EQUALS) ||

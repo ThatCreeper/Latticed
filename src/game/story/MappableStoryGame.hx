@@ -14,7 +14,7 @@ abstract class MappableStoryGame extends BaseMainGame {
         for (e in entities) {
             if (!e.serializableMap())
                 continue;
-            var type = Type.getClassName(Type.getClass(e));
+            var type = e.serializeMapClassName();
             var args = e.serializeMap();
             var self = args.length == 0 ? "this" : ", this";
             var post = e.serializeMapPostfix();
@@ -24,11 +24,22 @@ abstract class MappableStoryGame extends BaseMainGame {
         return str;
     }
 
+    function loadEditor() {
+        var g = new EditorStoryGame(selected.x, selected.y);
+        for (e in entities) {
+            e.spawnEditorClone(g);
+        }
+        Main.setGame(g);
+    }
+
     override function update() {
         super.update();
 
         if (Key.isPressed(Key.S)) {
             Sdl.setClipboardText(generateNewString());
+        }
+        if (Key.isPressed(Key.E)) {
+            loadEditor();
         }
     }
 }

@@ -5,7 +5,7 @@ import h2d.Bitmap;
 import h2d.Tile;
 
 class CursorAttacher extends BaseAttacher {
-    var tile: Bitmap;
+    public var tile: Bitmap;
 
     public function new(?g, ?layer) {
         super(g, layer);

@@ -1,6 +1,10 @@
 package game;
 
 class M {
+    public static function toNearestMultipleOf(x: Float, mod: Float) {
+        return Math.floor(x / mod) * mod;
+    }
+
     public static function lerp(from: Float, to: Float, x: Float) {
         return from + (to - from) * x;
     }
@@ -14,6 +18,10 @@ class M {
         if (Math.abs(l - to) < 1)
             return to;
         return l;
+    }
+
+    public static function lerpCR(from: Float, to: Float, x: Float) {
+        return lerpR(from, to, clamp(x, 0, 1));
     }
 
     public static function lerpI(from: Int, to: Int, x: Float): Int {

@@ -19,7 +19,7 @@ class PersistentGameState {
     }
 
     public static function put_bool(key, val) {
-        backing[key] = val ? "true" : "false";
+        put_str(key, val ? "true" : "false");
     }
 
     public static function reset() {
@@ -32,5 +32,9 @@ class PersistentGameState {
 
     public static function mark_flag(key) {
         put_bool(key, true);
+    }
+
+    public static function check_flag(key) {
+        return get_bool(key);
     }
 }

@@ -35,12 +35,14 @@ abstract class MappableStoryGame extends BaseMainGame {
     override function update() {
         super.update();
 
+        #if debug
         if (Key.isPressed(Key.S)) {
             Sdl.setClipboardText(generateNewString());
         }
         if (Key.isPressed(Key.E)) {
             loadEditor();
         }
+        #end
     }
 
      override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {

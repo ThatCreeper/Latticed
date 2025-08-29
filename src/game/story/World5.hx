@@ -104,14 +104,8 @@ to scroll the camera)", this, hudLayer);
         Main.setGame(new World5());
     }
 
-    override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
-        for (e in entities) {
-            if (!(e is StoryBlock))
-                continue;
-            var e:StoryBlock = cast e;
-            if (e.rayOverlaps(sx, sy, x, y))
-                return false;
-        }
-        return super.isValidNodeSpot(x, y, sx, sy);
+    override function win() {
+        super.win();
+        PersistentGameState.mark_flag("map_won_world5");
     }
 }

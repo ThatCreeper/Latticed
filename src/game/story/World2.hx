@@ -40,4 +40,9 @@ class World2 extends BaseMainGame {
         if (y >= 160) return false;
         return super.isValidNodeSpot(x, y, sx, sy);
     }
+
+    override function win() {
+        super.win();
+        PersistentGameState.mark_flag("map_won_world2");
+    }
 }

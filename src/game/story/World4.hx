@@ -4,7 +4,7 @@ import h2d.Bitmap;
 import game.game.MusicManager;
 import game.game.BaseMainGame;
 
-class World4 extends BaseMainGame {
+class World4 extends MappableStoryGame {
     public var movingWall: StoryBlock;
 
     public function new() {
@@ -39,13 +39,11 @@ class World4 extends BaseMainGame {
     override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
         if (x <= 414) return false;
         if (y >= 554) return false;
-        for (e in entities) {
-            if (!(e is StoryBlock))
-                continue;
-            var e:StoryBlock = cast e;
-            if (e.rayOverlaps(sx, sy, x, y))
-                return false;
-        }
         return super.isValidNodeSpot(x, y, sx, sy);
+    }
+
+    override function win() {
+        super.win();
+        PersistentGameState.mark_flag("map_won_world4");
     }
 }

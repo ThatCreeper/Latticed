@@ -53,17 +53,6 @@ class World3 extends MappableStoryGame {
             trace(mouseX, mouseY);
     }
 
-    override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
-        for (e in entities) {
-            if (!(e is StoryBlock))
-                continue;
-            var e:StoryBlock = cast e;
-            if (e.rayOverlaps(sx, sy, x, y))
-                return false;
-        }
-        return super.isValidNodeSpot(x, y, sx, sy);
-    }
-
     override function onNewNode() {
         super.onNewNode();
         for (e in entities) {
@@ -71,5 +60,10 @@ class World3 extends MappableStoryGame {
                 cast (e, EndPoint).recalculate();
             }
         }
+    }
+
+    override function win() {
+        super.win();
+        PersistentGameState.mark_flag("map_won_world3");
     }
 }

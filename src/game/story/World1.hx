@@ -147,4 +147,9 @@ exit to the menu");
     override function dispose() {
         super.dispose();
     }
+
+    override function win() {
+        super.win();
+        PersistentGameState.mark_flag("map_won_world1");
+    }
 }

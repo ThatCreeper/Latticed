@@ -239,7 +239,7 @@ abstract class BaseMainGame extends Game {
     public function onFailedCrowdedNode() {}
 
     public function isPaused() {
-        return instanceExists(e->e is PauseScreen || e is OverlayEntity);
+        return instanceExistsWhere(e->e is PauseScreen || e is OverlayEntity);
     }
 
     public function isValidNodeSpot(x:Float,y:Float,sx:Float,sy:Float): Bool {

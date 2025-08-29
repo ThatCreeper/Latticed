@@ -1,7 +1,7 @@
 package game;
 
 class PersistentGameState {
-    static var backing: Map<String, String> = {}
+    static var backing: Map<String, String> = new Map<String, String>();
 
     public static function get_str(key, def: Null<String> = null) {
         return backing.get(key) ?? def;
@@ -9,7 +9,7 @@ class PersistentGameState {
 
     public static function get_bool(key, def = false) {
         var dat = get_str(key);
-        if (!dat)
+        if (dat == null)
             return def;
         return dat == "true";
     }
@@ -23,7 +23,7 @@ class PersistentGameState {
     }
 
     public static function reset() {
-        backing = {};
+        backing.clear();
     }
 
     public static function rem(key) {

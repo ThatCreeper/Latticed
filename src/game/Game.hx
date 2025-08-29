@@ -112,10 +112,49 @@ class Game extends TimeAware {
                 e.remove();
     }
 
-    public function instanceExists(pred:Entity<Dynamic>->Bool) {
+    public function removeAll<T>(clazz:Class<T>) {
+        for (e in entities)
+            if (Std.isOfType(e, clazz))
+                e.remove();
+    }
+
+    public function instanceExistsWhere(pred:Entity<Dynamic>->Bool) {
         for (e in entities)
             if (pred(e))
                 return true;
         return false;
+    }
+
+    public function instanceExists<T>(clazz:Class<T>) {
+        for (e in entities)
+            if (Std.isOfType(e, clazz))
+                return true;
+        return false;
+    }
+
+    public function getInstanceWhere(pred:Entity<Dynamic>->Bool): Null<Entity<Dynamic>> {
+        for (e in entities)
+            if (pred(e))
+                return e;
+        return null;
+    }
+
+    public function getInstance<T>(clazz:Class<T>): Null<T> {
+        for (e in entities)
+            if (Std.isOfType(e, clazz))
+                return cast e;
+        return null;
+    }
+
+    public function entForEachWhere(pred:Entity<Dynamic>->Bool, functor:Entity<Dynamic>->Void) {
+        for (e in entities)
+            if (pred(e))
+                functor(e);
+    }
+
+    public function entForEach<T>(clazz:Class<T>, functor:T->Void) {
+        for (e in entities)
+            if (Std.isOfType(e, clazz))
+                functor(cast e);
     }
 }

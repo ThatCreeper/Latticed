@@ -55,11 +55,7 @@ class World3 extends MappableStoryGame {
 
     override function onNewNode() {
         super.onNewNode();
-        for (e in entities) {
-            if (e is EndPoint) {
-                cast (e, EndPoint).recalculate();
-            }
-        }
+        entForEach(EndPoint, e -> e.recalculate());
     }
 
     override function win() {

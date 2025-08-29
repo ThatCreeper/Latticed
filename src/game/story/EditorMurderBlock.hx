@@ -57,8 +57,7 @@ class EditorMurderBlock extends MurderBlock {
             game.score = Math.floor(x);
             game.money = Math.floor(y);
         }
-        if (g.selectedEnt != this && (Key.isPressed(Key.MOUSE_LEFT)
-                                   || Key.isPressed(Key.MOUSE_MIDDLE)
+        if (g.selectedEnt != this && (Key.isPressed(Key.MOUSE_MIDDLE)
                                    || Key.isPressed(Key.MOUSE_RIGHT)) && overlapsXY(game.mouseX, game.mouseY)) {
             g.selectedEnt = this;
             grabX = game.mouseX - x;

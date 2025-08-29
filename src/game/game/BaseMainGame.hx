@@ -32,6 +32,7 @@ abstract class BaseMainGame extends Game {
     var deathText:Text;
 
     public var lockedCamera = false;
+    var allowSpaceMovement = false;
 
     public function new() {
         super();
@@ -98,7 +99,10 @@ abstract class BaseMainGame extends Game {
             if (Key.isDown(Key.DOWN))
                 camera.sy += 3 * tmod;
 
-            if (Key.isDown(Key.MOUSE_RIGHT) &&
+            var moveKeyDown = Key.isDown(Key.MOUSE_RIGHT);
+            if (allowSpaceMovement)
+                moveKeyDown = moveKeyDown || Key.isDown(Key.SPACE);
+            if (moveKeyDown &&
                 (mouseX != lastMouseX ||
                 mouseY != lastMouseY)) {
                 camera.x -= mouseX - lastMouseX;

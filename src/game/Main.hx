@@ -45,7 +45,9 @@ class Main extends hxd.App {
 
         style = new h2d.domkit.Style();
         style.load(hxd.Res.styles);
+        #if debug
         style.allowInspect = true;
+        #end
 
         Pad.wait(p -> {
             pad = p;
@@ -94,7 +96,7 @@ class Main extends hxd.App {
             game.postUpdate();
             style.sync(dt);
             if (newGameThisFrame)
-                hxd.Timer.frameCount++; // Prevent keyboard input loops. Might mess up some other stuff
+                hxd.Timer.update(); // Prevent keyboard input loops. Might mess up some other stuff
         } while(newGameThisFrame);
     }
 

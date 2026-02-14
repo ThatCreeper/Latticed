@@ -55,7 +55,9 @@ class GptTyper extends Entity<World0> {
             var B = text.textWidth * 2;
             var C = scrwid / 2;
             var finalTargetX = C - A - (B / 2);
-            x = M.smootherStep(0, finalTargetX, scrollTime / scrollDur);
+            x = M.smootherStep((scrwid - 800) / 2, finalTargetX, scrollTime / scrollDur);
+        } else {
+            x = (scrwid - 800) / 2;
         }
         if (moving && targetCameraZoom != 0) {
             camera.scale = M.smootherStep(startCameraZoom, targetCameraZoom, scrollTime / scrollDur);

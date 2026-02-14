@@ -69,6 +69,8 @@ which can use its hypha";
     override function update() {
         super.update();
 
+        heapsIcon.y = -scrhei + heapsIcon.height;
+
         if (Key.isReleased(Key.ESCAPE))
             Main.setGame(new World1());
 

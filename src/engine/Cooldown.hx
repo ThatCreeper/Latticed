@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 // Vaguely based on the dnLibs api
 class Cooldown {
@@ -66,10 +66,11 @@ class Cooldown {
             return v;
         v = fmap.get(cd);
         if (v != null)
-            return v / Main.FPS;
+            return v / GameEngine.FPS;
         return 0;
     }
 
+    // TODO: This should probably return int, right?
     public function remDurF(cd: String) {
         var v;
         v = fmap.get(cd);
@@ -77,7 +78,7 @@ class Cooldown {
             return v;
         v = smap.get(cd);
         if (v != null)
-            return v * Main.FPS;
+            return v * GameEngine.FPS;
         return 0;
     }
 

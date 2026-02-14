@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 import hxd.Pad;
 import hxd.Timer;
@@ -6,18 +6,18 @@ import hxd.Timer;
 class TimeAware {
     public var tmod(get, never): Float;
         function get_tmod() {
-            return Main.tmod;
+            return GameEngine.tmod;
         }
     public var utmod(get, never): Float;
         function get_utmod() {
-            return Main.utmod;
+            return GameEngine.utmod;
         }
     public var gameSpeed(get, set): Float;
         function get_gameSpeed() {
-            return Main.GameSpeed;
+            return GameEngine.GameSpeed;
         }
         function set_gameSpeed(v) {
-            return Main.UserGameSpeed = v;
+            return GameEngine.UserGameSpeed = v;
         }
     public var deltaTime(get, never): Float;
         function get_deltaTime() {
@@ -25,7 +25,7 @@ class TimeAware {
         }
     public var pad(get, never): Null<Pad>;
         function get_pad() {
-            return Main.pad;
+            return GameEngine.pad;
         }
     
     public var cd = new Cooldown();

@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 import h2d.col.Point;
 
@@ -50,7 +50,7 @@ class Game extends TimeAware {
     }
 
     function initLayers() {
-        s2d = Main.newScene();
+        s2d = GameEngine.newScene();
         hudLayer = new h2d.Object();
         bgLayer = new h2d.Object();
         gameLayer = new h2d.Object();
@@ -75,7 +75,7 @@ class Game extends TimeAware {
     public function postUpdate() {
         for (e in entities)
             e.postUpdate();
-        camera.update(s2d, Main.GameSpeed > 0.1 && cd.has("shake"));
+        camera.update(s2d, GameEngine.GameSpeed > 0.1 && cd.has("shake"));
     }
 
     public function tick() {

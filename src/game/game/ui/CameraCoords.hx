@@ -1,5 +1,6 @@
 package game.game.ui;
 
+import engine.GameEngine;
 import hxd.Key;
 
 class CameraCoords extends h2d.Flow implements h2d.domkit.Object {
@@ -25,6 +26,6 @@ class CameraCoords extends h2d.Flow implements h2d.domkit.Object {
         super(parent);
         initComponent();
 
-        Main.style.addObject(this);
+        GameEngine.style.addObject(this);
     }
 }

@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 import game.story.EditorStoryGame;
 import h2d.Object;
@@ -31,7 +31,7 @@ class Entity<T: Game = Game> extends TimeAware {
     
     public function new(?g: T, ?layer) {
         if (g == null)
-            g = cast (Main.INST.game);
+            g = cast (GameEngine.INST.game);
         game = g;
         game.addEntity(cast this);
 

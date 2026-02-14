@@ -1,7 +1,6 @@
 package game.story;
 
 import hxd.Key;
-import game.game.MusicManager;
 import h2d.Text;
 
 class CreditsGame extends Game {
@@ -41,6 +40,6 @@ Press escape to return";
         super.update();
 
         if (Key.isDown(Key.ESCAPE))
-            Main.setGame(new StorySelectionGame());
+            GameEngine.setGame(new StorySelectionGame());
     }
 }

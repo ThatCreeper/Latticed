@@ -7,7 +7,7 @@ class OverlayEntity extends MGEntity {
     var removeFrame = false;
     
     public function new(i, s, ?g) {
-        super(g, (g ?? Main.INST.game).hudLayer);
+        super(g, (g ?? GameEngine.INST.game).hudLayer);
 
         var bm = new Bitmap(i, spr);
         scale = s;

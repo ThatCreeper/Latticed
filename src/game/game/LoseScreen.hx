@@ -14,7 +14,7 @@ class LoseScreen extends MGEntity {
         ui.keepPlaying = game.keepPlaying;
         ui.screenshot = game.playSpace.screenshot;
         ui.restart = game.restart;
-        ui.exitToMenu = ()->Main.setGame(new StorySelectionGame()); // TODO: Real menu
+        ui.exitToMenu = ()->GameEngine.setGame(new StorySelectionGame()); // TODO: Real menu
     }
 
     override function postUpdate() {

@@ -3,7 +3,6 @@ package game.story;
 import h2d.Bitmap;
 import game.game.BaseMainGame;
 import game.game.NodeEntity;
-import game.game.MusicManager;
 import h2d.Graphics;
 
 class MurderBlock extends Entity<BaseMainGame> {

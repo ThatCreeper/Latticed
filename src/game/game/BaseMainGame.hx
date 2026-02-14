@@ -1,11 +1,12 @@
 package game.game;
 
+import engine.Game;
 import h2d.Text;
 import h2d.Tile;
 import haxe.exceptions.NotImplementedException;
 import h2d.Interactive;
 import h2d.Bitmap;
-import game.Entity;
+import engine.Entity;
 import hxd.Key;
 import h2d.col.Point;
 import game.game.ui.CameraCoords;

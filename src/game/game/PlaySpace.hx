@@ -136,31 +136,35 @@ class PlaySpace extends MGEntity {
     }
 
     // A modified version of Scene.captureBitmap
-    function captureBitmapNoBitmap( s: h2d.Scene, tex : Texture ) @:privateAccess {
-        var engine = Main.INST.engine;
-        engine.begin();
-        engine.pushTarget(tex);
-        engine.setRenderZone(0, 0, tex.width, tex.height);
-
-        var ow = s.width, oh = s.height, ova = s.viewportA, ovd = s.viewportD, ovx = s.viewportX, ovy = s.viewportY;
-        s.width = tex.width;
-        s.height = tex.height;
-        s.viewportA = 2 / s.width;
-        s.viewportD = 2 / s.height;
-        s.viewportX = -1;
-        s.viewportY = -1;
-        s.posChanged = true;
-        s.render(engine);
-        engine.popTarget();
-
-        s.width = ow;
-        s.height = oh;
-        s.viewportA = ova;
-        s.viewportD = ovd;
-        s.viewportX = ovx;
-        s.viewportY = ovy;
-        s.posChanged = true;
-        engine.setRenderZone();
-        engine.end();
+    // TODO: NOOP
+    function captureBitmapNoBitmap(s: h2d.Scene, tex: Texture) {
+        
     }
+    // function captureBitmapNoBitmap( s: h2d.Scene, tex : Texture ) @:privateAccess {
+    //     var engine = Main.INST.engine;
+    //     engine.begin();
+    //     engine.pushTarget(tex);
+    //     engine.setRenderZone(0, 0, tex.width, tex.height);
+
+    //     var ow = s.width, oh = s.height, ova = s.viewportA, ovd = s.viewportD, ovx = s.viewportX, ovy = s.viewportY;
+    //     s.width = tex.width;
+    //     s.height = tex.height;
+    //     s.viewportA = 2 / s.width;
+    //     s.viewportD = 2 / s.height;
+    //     s.viewportX = -1;
+    //     s.viewportY = -1;
+    //     s.posChanged = true;
+    //     s.render(engine);
+    //     engine.popTarget();
+
+    //     s.width = ow;
+    //     s.height = oh;
+    //     s.viewportA = ova;
+    //     s.viewportD = ovd;
+    //     s.viewportX = ovx;
+    //     s.viewportY = ovy;
+    //     s.posChanged = true;
+    //     engine.setRenderZone();
+    //     engine.end();
+    // }
 }

@@ -1,6 +1,5 @@
 package game.story;
 
-import game.game.MusicManager;
 import hxd.snd.Channel;
 import hxd.Key;
 import h2d.Object;
@@ -70,7 +69,7 @@ If you run out, you lose");
         }
         if (phase == 8 &&
             hudLayer.alpha <= 0) {
-            Main.setGame(new StorySelectionGame());
+            GameEngine.setGame(new StorySelectionGame());
         }
     }
 
@@ -87,7 +86,7 @@ If you run out, you lose");
     }
 
     public function restart() {
-        Main.setGame(new World1());
+        GameEngine.setGame(new World1());
     }
 
     override function die() {
@@ -150,6 +149,6 @@ exit to the menu");
 
     override function win() {
         super.win();
-        PersistentGameState.mark_flag("map_won_world1");
+        PersistentGameState.mark_flag(PersistentFlags.MapWonWorld1);
     }
 }

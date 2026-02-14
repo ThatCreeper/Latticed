@@ -1,7 +1,6 @@
 package game.story;
 
 import h2d.Bitmap;
-import game.game.MusicManager;
 import game.game.BaseMainGame;
 
 class World4 extends MappableStoryGame {
@@ -33,7 +32,7 @@ class World4 extends MappableStoryGame {
     }
 
     public function restart() {
-        Main.setGame(new World4());
+        GameEngine.setGame(new World4());
     }
 
     override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
@@ -44,6 +43,6 @@ class World4 extends MappableStoryGame {
 
     override function win() {
         super.win();
-        PersistentGameState.mark_flag("map_won_world4");
+        PersistentGameState.mark_flag(PersistentFlags.MapWonWorld4);
     }
 }

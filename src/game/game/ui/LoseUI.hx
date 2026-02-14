@@ -18,7 +18,7 @@ class LoseUI extends h2d.Flow implements h2d.domkit.Object {
         super(parent);
         initComponent();
 
-        Main.style.addObject(this);
+        GameEngine.style.addObject(this);
         exit.onClick = ()->exitToMenu();
         btn.onClick = ()->keepPlaying();
         scrnsht.onClick = ()->screenshot();

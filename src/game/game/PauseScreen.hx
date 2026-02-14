@@ -17,7 +17,7 @@ class PauseScreen extends MGEntity {
         ui = new PauseUI(game.score,spr);
         ui.continueGame = ()->remove();
         ui.screenshot = game.playSpace.screenshot;
-        ui.exitToMenu = ()->Main.setGame(new StorySelectionGame()); // TODO: Not a menu!
+        ui.exitToMenu = ()->GameEngine.setGame(new StorySelectionGame()); // TODO: Not a menu!
     }
 
     override function postUpdate() {

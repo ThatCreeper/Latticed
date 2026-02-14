@@ -1,7 +1,6 @@
 package game.story;
 
 import hxd.Key;
-import game.game.MusicManager;
 import game.game.BaseMainGame;
 
 class World3 extends MappableStoryGame {
@@ -43,7 +42,7 @@ class World3 extends MappableStoryGame {
     }
 
     public function restart() {
-        Main.setGame(new World3());
+        GameEngine.setGame(new World3());
     }
 
     override function update() {
@@ -60,6 +59,6 @@ class World3 extends MappableStoryGame {
 
     override function win() {
         super.win();
-        PersistentGameState.mark_flag("map_won_world3");
+        PersistentGameState.mark_flag(PersistentFlags.MapWonWorld3);
     }
 }

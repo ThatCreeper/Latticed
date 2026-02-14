@@ -1,6 +1,5 @@
 package game.story;
 
-import game.game.MusicManager;
 import h2d.Bitmap;
 import game.game.BaseMainGame;
 
@@ -28,7 +27,7 @@ class World2 extends BaseMainGame {
     }
 
     public function restart() {
-        Main.setGame(new World2());
+        GameEngine.setGame(new World2());
     }
 
     override function isValidNodeSpot(x:Float, y:Float, sx:Float, sy:Float):Bool {
@@ -43,6 +42,6 @@ class World2 extends BaseMainGame {
 
     override function win() {
         super.win();
-        PersistentGameState.mark_flag("map_won_world2");
+        PersistentGameState.mark_flag(PersistentFlags.MapWonWorld2);
     }
 }

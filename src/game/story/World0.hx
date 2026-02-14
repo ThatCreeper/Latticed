@@ -1,7 +1,7 @@
 package game.story;
 
+import engine.Game;
 import h2d.Bitmap;
-import game.game.MusicManager;
 import hxd.Key;
 import hxd.snd.Channel;
 
@@ -72,7 +72,7 @@ which can use its hypha";
         heapsIcon.y = -scrhei + heapsIcon.height;
 
         if (Key.isReleased(Key.ESCAPE))
-            Main.setGame(new World1());
+            GameEngine.setGame(new World1());
 
         time += deltaTime;
         iconTime += deltaTime;
@@ -140,7 +140,7 @@ Do you want me to help you draft any of these?
 I could help with creating more of the setting, or\n\n");
         }
         if (step == 4 && typer.finished() && music.isReleased()) {
-            Main.setGame(new World1());
+            GameEngine.setGame(new World1());
         }
     }
 

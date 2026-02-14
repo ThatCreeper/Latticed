@@ -1,4 +1,4 @@
-package game.game;
+package engine;
 
 import hxd.res.Sound;
 import hxd.snd.Channel;

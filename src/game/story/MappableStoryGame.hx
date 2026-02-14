@@ -29,7 +29,7 @@ abstract class MappableStoryGame extends BaseMainGame {
         for (e in entities) {
             e.spawnEditorClone(g);
         }
-        Main.setGame(g);
+        GameEngine.setGame(g);
     }
 
     override function update() {

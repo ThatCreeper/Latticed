@@ -1,5 +1,7 @@
 package game.game;
 
+import engine.M;
+import engine.Entity;
 import h2d.Object;
 
 class BaseAttacher extends MGEntity {

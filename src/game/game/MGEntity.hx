@@ -1,6 +1,6 @@
 package game.game;
 
 import game.game.BaseMainGame;
-import game.Entity;
+import engine.Entity;
 
 typedef MGEntity = Entity<BaseMainGame>;

@@ -1,7 +1,6 @@
 package game.story;
 
 import game.game.NodeEntity;
-import game.game.MusicManager;
 import game.game.BaseMainGame;
 
 class World5 extends MappableStoryGame {
@@ -101,11 +100,11 @@ to scroll the camera)", this, hudLayer);
     }
 
     public function restart() {
-        Main.setGame(new World5());
+        GameEngine.setGame(new World5());
     }
 
     override function win() {
         super.win();
-        PersistentGameState.mark_flag("map_won_world5");
+        PersistentGameState.mark_flag(PersistentFlags.MapWonWorld5);
     }
 }

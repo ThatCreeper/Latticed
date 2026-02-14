@@ -13,7 +13,7 @@ class PauseUI extends h2d.Flow implements h2d.domkit.Object {
         super(parent);
         initComponent();
 
-        Main.style.addObject(this);
+        GameEngine.style.addObject(this);
         scrnsht.onClick = ()->screenshot();
         exit.onClick = ()->exitToMenu();
         cont.onClick = ()->continueGame();

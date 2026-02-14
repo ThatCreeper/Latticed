@@ -15,7 +15,7 @@ class EditorStoryGame extends MappableStoryGame {
 
         cursor.attacher.tile.visible = false;
 
-        Main.style.allowInspect = false; // Allow middle mouse gesture
+        GameEngine.style.allowInspect = false; // Allow middle mouse gesture
         allowSpaceMovement = true;
     }
 
@@ -56,6 +56,6 @@ class EditorStoryGame extends MappableStoryGame {
     }
 
     public function restart() {
-        Main.setGame(new StorySelectionGame());
+        GameEngine.setGame(new StorySelectionGame());
     }
 }

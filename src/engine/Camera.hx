@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 class Camera extends TimeAware {
     public var x(get, set): Float;

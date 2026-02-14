@@ -35,6 +35,6 @@ class FreePlayGame extends BaseMainGame {
     // }
 
     public function restart() {
-        Main.setGame(new FreePlayGame());
+        GameEngine.setGame(new FreePlayGame());
     }
 }

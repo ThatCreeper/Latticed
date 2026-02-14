@@ -63,6 +63,6 @@ class StoryUI implements h2d.domkit.Object extends h2d.Flow {
         super(parent);
         initComponent();
 
-        Main.style.addObject(this);
+        GameEngine.style.addObject(this);
     }
 }
